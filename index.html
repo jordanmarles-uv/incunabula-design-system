@@ -5,35 +5,46 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sistema de Diseño — Incunabula</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/logos/Favicon32.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/logos/Favicon180.png">
+  <link rel="icon" type="image/svg+xml" href="assets/logos/v2/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logos/v2/favicon32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/logos/v2/favicon180.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600&display=swap"
     rel="stylesheet">
   <style>
     /* =============================================
-       SISTEMA DE TOKENS — VERSIÓN A: Tinta y Pergamino
+       SISTEMA DE TOKENS — Tinta y Pergamino (versión única)
+       D-21: fondo principal blanco puro; el pergamino solo en cajas de contraste.
     ============================================= */
-    :root,
-    [data-version="a"] {
+    :root {
       --color-primary: #111111;
-      --color-bg: #F5F3EE;
-      --color-bg-alt: #ECEAE4;
+      --color-bg: #FFFFFF;
+      --color-bg-alt: #F5F3EE;
+      --color-parchment: #F5F3EE;
       --color-accent: #B22222;
       --color-accent-hover: #8B1A1A;
       --color-text-secondary: #3D3D3D;
-      --color-border: #D8D8D4;
+      --color-border: #E2DDD0;
       --color-success: #3A6B35;
+      --color-warning: #B25A00;
+      --color-info: #3730B3;
       --color-surface: #FFFFFF;
+      --color-on-accent: #FFFFFF;
+
+      --tint-warning: #FFF8F0;
+      --tint-warning-border: #FDDCB0;
+      --tint-success: #F0FFF4;
+      --tint-success-border: #BCECCA;
+      --tint-info: #EEF2FF;
+      --tint-info-border: #C7D2FE;
+      --tint-accent: #FFF0F0;
+      --tint-accent-border: #FECACA;
 
       --font-heading: 'Fraunces', Georgia, serif;
       --font-body: 'Inter', system-ui, sans-serif;
       --font-weight-heading: 700;
-
-      --version-name: "Versión A — Tinta y Pergamino";
-      --version-subtitle: "Taschen · Cálida · Editorial";
 
       --space-xs: 8px;
       --space-sm: 16px;
@@ -52,31 +63,6 @@
       --shadow-accent: 0 4px 16px rgba(178, 34, 34, 0.22);
 
       --transition: 220ms ease-in-out;
-    }
-
-    /* =============================================
-       SISTEMA DE TOKENS — VERSIÓN B: Vanguardia & Neón
-    ============================================= */
-    [data-version="b"] {
-      --color-primary: #111111;
-      --color-bg: #F0ECE6;
-      --color-bg-alt: #E3DFD9;
-      --color-accent: #E35D29;
-      --color-accent-hover: #D05220;
-      --color-accent-warm: #E35D29;
-      --color-text-secondary: #555555;
-      --color-border: #CFCBC5;
-      --color-success: #059669;
-      --color-surface: #FFFFFF;
-
-      --font-heading: 'Bricolage Grotesque', system-ui, sans-serif;
-      --font-body: 'Space Grotesk', system-ui, sans-serif;
-      --font-weight-heading: 900;
-
-      --version-name: "Versión B — Vanguardia & Neón";
-      --version-subtitle: "Brutalismo · 70-20-10 · Hyper-Actual";
-
-      --shadow-accent: 0 4px 16px rgba(255, 62, 0, 0.3);
     }
 
     /* =============================================
@@ -160,9 +146,9 @@
 
     .section-desc {
       color: var(--color-text-secondary);
-      max-width: 65ch;
+      max-width: none;
       margin-bottom: var(--space-xl);
-      font-size: 17px;
+      font-size: 18px;
       line-height: 1.6;
       text-wrap: pretty;
     }
@@ -176,57 +162,32 @@
       z-index: 100;
       background: var(--color-bg);
       border-bottom: 1px solid var(--color-border);
-      backdrop-filter: blur(8px);
-      transition: background-color var(--transition);
     }
 
     .header-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: var(--space-sm) var(--space-lg);
+      gap: var(--space-md);
+      padding: 12px var(--space-lg);
       max-width: 1100px;
       margin: 0 auto;
     }
 
-    .logo-mark {
-      display: flex;
-      align-items: center;
-      gap: var(--space-sm);
-    }
-
-    .logo-icon {
-      width: 36px;
-      height: 36px;
-    }
-
-    .logo-text {
-      font-family: var(--font-heading);
-      font-size: 18px;
-      font-weight: var(--font-weight-heading);
-      letter-spacing: 0.04em;
-      color: var(--color-primary);
-      transition: color var(--transition);
-    }
-
-    .logo-sub {
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--color-text-secondary);
+    .brand-logo {
       display: block;
-      margin-top: -2px;
+      height: 48px;
+      width: auto;
     }
 
     nav {
       display: flex;
-      gap: 12px;
+      gap: var(--space-sm);
       align-items: center;
+      flex-wrap: wrap;
     }
 
     nav a {
-      display: flex;
-      align-items: center;
       font-family: var(--font-body);
       font-size: 11px;
       font-weight: 600;
@@ -234,58 +195,39 @@
       text-transform: uppercase;
       color: var(--color-text-secondary);
       text-decoration: none;
-      padding: 6px 4px;
+      padding: 6px 2px;
       transition: color var(--transition);
       border-bottom: 1px solid transparent;
     }
 
-    nav a:hover {
+    nav a:hover,
+    nav a:focus-visible {
       color: var(--color-primary);
       border-bottom-color: var(--color-primary);
     }
 
-    /* VERSION TOGGLE */
-    .version-toggle {
-      display: flex;
-      align-items: center;
-      gap: var(--space-xs);
-      background: var(--color-bg-alt);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-pill);
-      padding: 4px;
-    }
-
-    .version-btn {
-      padding: 6px 16px;
-      border-radius: var(--radius-pill);
-      border: none;
-      background: transparent;
-      font-family: var(--font-body);
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      color: var(--color-text-secondary);
-      transition: all var(--transition);
-    }
-
-    .version-btn.active {
-      background: var(--color-primary);
-      color: var(--color-bg);
-    }
-
     /* =============================================
-       HERO
+       HERO BANNER
     ============================================= */
+    .hero-band {
+      background: var(--color-bg-alt);
+      border-bottom: 1px solid var(--color-border);
+      overflow: hidden;
+    }
+
     .hero {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: var(--space-xl);
+      align-items: center;
       padding: var(--space-2xl) 0 var(--space-xl);
-      text-align: center;
     }
 
     .hero-eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: var(--color-bg-alt);
+      background: var(--color-surface);
       border: 1px solid var(--color-border);
       border-radius: var(--radius-pill);
       padding: 6px 16px;
@@ -294,7 +236,7 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--color-text-secondary);
-      margin-bottom: var(--space-lg);
+      margin-bottom: var(--space-md);
     }
 
     .dot {
@@ -307,35 +249,239 @@
 
     .hero-title {
       font-family: var(--font-heading);
-      font-size: clamp(48px, 8vw, 88px);
+      font-size: clamp(42px, 5.8vw, 72px);
       font-weight: 700;
-      line-height: 1.05;
-      letter-spacing: -0.02em;
+      line-height: 1.04;
+      letter-spacing: -0.025em;
       margin-bottom: var(--space-md);
+      text-wrap: balance;
     }
 
     .hero-accent {
       color: var(--color-accent);
+      font-style: italic;
     }
 
     .hero-desc {
-      font-size: 18px;
+      font-size: 19px;
       color: var(--color-text-secondary);
-      max-width: 520px;
-      margin: 0 auto var(--space-xl);
-      line-height: 1.7;
+      max-width: 50ch;
+      margin-bottom: var(--space-lg);
+      line-height: 1.65;
+      text-wrap: pretty;
     }
 
-    .hero-version-badge {
-      display: inline-block;
-      background: var(--color-accent);
-      color: white;
-      padding: 8px 20px;
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-xl);
+    }
+
+    .hero .btn-secondary {
+      background: var(--color-surface);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      justify-content: start;
+      gap: var(--space-xl);
+      padding-top: var(--space-md);
+      border-top: 1px solid var(--color-border);
+    }
+
+    .hero-stat strong {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 30px;
+      line-height: 1.1;
+    }
+
+    .hero-stat span {
+      font-size: 12px;
+      color: var(--color-text-secondary);
+    }
+
+    /* Escenario: tres portadas en abanico sobre un círculo blanco */
+    .hero-stage {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      aspect-ratio: 1 / 1;
+      margin-left: auto;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .hero-stage::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-lg);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-card);
+    }
+
+    .hero-stage::after {
+      content: '';
+      position: absolute;
+      inset: 12px;
+      border-radius: var(--radius-md);
+      border: 1px dashed var(--color-border);
+    }
+
+    .hero-book {
+      position: absolute;
+      width: 40%;
+      height: auto;
+      transition: transform var(--transition);
+    }
+
+    .hero-book.b1 {
+      left: 0;
+      top: 32%;
+      width: 34%;
+      transform: rotate(-4deg);
+    }
+
+    .hero-book.b2 {
+      left: 30%;
+      top: 12%;
+      width: 40%;
+      z-index: 2;
+    }
+
+    .hero-book.b3 {
+      right: 0;
+      top: 32%;
+      width: 34%;
+      transform: rotate(4deg);
+    }
+
+    .hero-stage:hover .hero-book.b1 {
+      transform: rotate(-6deg) translateY(-4px);
+    }
+
+    .hero-stage:hover .hero-book.b3 {
+      transform: rotate(6deg) translateY(-4px);
+    }
+
+    .hero-chip {
+      position: absolute;
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
       border-radius: var(--radius-pill);
+      padding: 8px 16px;
+      box-shadow: var(--shadow-hover);
       font-size: 13px;
       font-weight: 600;
-      transition: all var(--transition);
+      white-space: nowrap;
     }
+
+    .hero-chip.price {
+      left: 2%;
+      bottom: 12%;
+    }
+
+    .hero-chip.price::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-success);
+    }
+
+    .hero-chip.off {
+      right: 6%;
+      top: 8%;
+      background: var(--color-accent);
+      border-color: var(--color-accent);
+      color: var(--color-on-accent);
+      box-shadow: var(--shadow-accent);
+    }
+
+    .hero-seal {
+      position: absolute;
+      z-index: 4;
+      right: 4%;
+      bottom: 6%;
+      width: 24%;
+      aspect-ratio: 1 / 1;
+      padding: 4%;
+      border-radius: 50%;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-card);
+    }
+
+    .hero-seal img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .page-index-wrap {
+      padding-top: var(--space-xl);
+    }
+
+    /* ÍNDICE DE LA PÁGINA */
+    .page-index {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: var(--space-2xl);
+    }
+
+    .page-index a {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: var(--space-md);
+      color: inherit;
+      text-decoration: none;
+      border-right: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+      transition: background var(--transition);
+    }
+
+    .page-index a:nth-child(4n) {
+      border-right: none;
+    }
+
+    .page-index a:nth-child(n+5) {
+      border-bottom: none;
+    }
+
+    .page-index a:hover,
+    .page-index a:focus-visible {
+      background: var(--color-bg-alt);
+    }
+
+    .page-index .num {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      color: var(--color-accent);
+    }
+
+    .page-index .name {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .page-index .hint {
+      font-size: 12px;
+      color: var(--color-text-secondary);
+    }
+
 
     /* =============================================
        SECCIÓN: CONCEPTO
@@ -392,15 +538,11 @@
     .manifesto-block {
       background: var(--color-primary);
       color: var(--color-bg);
-      border-radius: var(--radius-lg);
-      padding: var(--space-xl) var(--space-xl);
-      margin-top: var(--space-2xl);
+      padding: var(--space-xl);
+      margin-top: var(--space-xl);
       position: relative;
       overflow: hidden;
-      width: 100vw;
-      left: 50%;
-      transform: translateX(-50%);
-      border-radius: 0;
+      border-radius: var(--radius-lg);
       text-align: center;
     }
 
@@ -413,8 +555,8 @@
     .manifesto-block::before {
       content: '"';
       position: absolute;
-      top: -20px;
-      left: 20px;
+      top: 0;
+      left: 24px;
       font-family: var(--font-heading);
       font-size: 200px;
       opacity: 0.06;
@@ -781,125 +923,163 @@
     /* TARJETAS DE PRODUCTO */
     .book-cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: var(--space-lg);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-md);
+    }
+
+    .book-card[hidden] {
+      display: none;
     }
 
     .book-card {
-      background: transparent;
-      border: none;
-      border-radius: 0;
+      display: flex;
+      flex-direction: column;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
       overflow: hidden;
-      transition: transform var(--transition);
-      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition);
     }
 
     .book-card:hover {
       transform: translateY(-4px);
-    }
-
-    .book-card:hover .book-img {
       box-shadow: var(--shadow-hover);
     }
 
-    .book-img {
-      aspect-ratio: 2/3;
-      background: var(--color-bg-alt);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .book-cover {
       position: relative;
+      aspect-ratio: 1 / 1;
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
       overflow: hidden;
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-sm);
-      box-shadow: var(--shadow-card);
-      transition: box-shadow var(--transition);
     }
 
-    .book-img-inner {
-      width: 70%;
-      aspect-ratio: 2/3;
-      border-radius: 2px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-heading);
-      font-size: 11px;
-      text-align: center;
-      color: rgba(255, 255, 255, 0.8);
-      padding: 8px;
-      font-style: italic;
+    .book-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 500ms ease;
+    }
+
+    .book-card:hover .book-cover img {
+      transform: scale(1.04);
     }
 
     .book-badge {
       position: absolute;
-      top: 10px;
-      left: 10px;
-      background: var(--color-success);
-      color: white;
-      font-size: 10px;
+      top: 12px;
+      left: 12px;
+      z-index: 2;
+      background: var(--color-accent);
+      color: var(--color-on-accent);
+      font-size: 11px;
       font-weight: 600;
-      padding: 3px 8px;
+      padding: 4px 10px;
       border-radius: var(--radius-pill);
       letter-spacing: 0.06em;
-      text-transform: uppercase;
-      z-index: 2;
-    }
-
-    .book-badge.out {
-      background: var(--color-text-secondary);
     }
 
     .book-info {
-      padding: 16px 0 0 0;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: 6px;
+      padding: var(--space-sm) var(--space-sm) var(--space-sm);
+    }
+
+    .book-cat {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
     }
 
     .book-title {
       font-family: var(--font-heading);
-      font-size: 14px;
+      font-size: 17px;
       font-weight: 700;
-      line-height: 1.3;
-      margin-bottom: 4px;
+      line-height: 1.25;
+    }
+
+    .book-edition {
+      font-weight: 400;
+      font-style: italic;
+      color: var(--color-text-secondary);
     }
 
     .book-author {
-      font-size: 12px;
+      font-size: 13px;
       color: var(--color-text-secondary);
-      margin-bottom: 10px;
+    }
+
+    .book-cond {
+      margin-top: 2px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--color-warning);
+    }
+
+    .book-cond.is-new {
+      color: var(--color-info);
     }
 
     .book-footer {
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       justify-content: space-between;
+      gap: var(--space-xs);
+      margin-top: auto;
+      padding-top: var(--space-sm);
+      border-top: 1px solid var(--color-border);
+    }
+
+    .book-prices {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .book-price-old {
+      font-size: 12px;
+      text-decoration: line-through;
+      color: var(--color-text-secondary);
     }
 
     .book-price {
       font-family: var(--font-heading);
-      font-size: 17px;
+      font-size: 20px;
       font-weight: 700;
-      color: var(--color-accent);
-    }
-
-    [data-version="b"] .book-price {
-      color: var(--color-accent-warm, var(--color-accent));
+      color: var(--color-primary);
     }
 
     .book-btn {
       background: var(--color-accent);
-      color: white;
+      color: var(--color-on-accent);
       border: none;
       border-radius: var(--radius-sm);
-      padding: 6px 12px;
-      font-size: 11px;
+      padding: 9px 16px;
+      font-size: 13px;
       font-weight: 600;
       cursor: pointer;
-      transition: all var(--transition);
+      transition: background var(--transition);
       font-family: var(--font-body);
     }
 
     .book-btn:hover {
       background: var(--color-accent-hover);
+    }
+
+    .book-card.is-soldout .book-cover img {
+      filter: grayscale(1);
+      opacity: 0.55;
+    }
+
+    .book-card.is-soldout .book-btn {
+      background: transparent;
+      color: var(--color-text-secondary);
+      border: 1px solid var(--color-border);
+      cursor: not-allowed;
     }
 
     /* BADGES */
@@ -916,27 +1096,21 @@
     }
 
     .badge-used {
-      background: #FFF8F0;
-      color: #B25A00;
-      border: 1px solid #FDDCB0;
-    }
-
-    .badge-stock {
-      background: #F0FFF4;
-      color: var(--color-success);
-      border: 1px solid #BCECCA;
+      background: var(--tint-warning);
+      color: var(--color-warning);
+      border: 1px solid var(--tint-warning-border);
     }
 
     .badge-new {
-      background: #EEF2FF;
-      color: #3730B3;
-      border: 1px solid #C7D2FE;
+      background: var(--tint-info);
+      color: var(--color-info);
+      border: 1px solid var(--tint-info-border);
     }
 
     .badge-rare {
-      background: #FFF0F0;
+      background: var(--tint-accent);
       color: var(--color-accent);
-      border: 1px solid #FECACA;
+      border: 1px solid var(--tint-accent-border);
     }
 
     .badge-out {
@@ -944,6 +1118,7 @@
       color: var(--color-text-secondary);
       border: 1px solid var(--color-border);
     }
+
 
     /* INPUTS */
     .input-group {
@@ -981,65 +1156,395 @@
     /* =============================================
        SECCIÓN: CORREOS
     ============================================= */
-    .email-preview {
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      max-width: 560px;
-      box-shadow: var(--shadow-card);
+    .email-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 280px;
+      gap: var(--space-xl);
+      align-items: start;
     }
 
-    .email-header {
-      background: var(--color-surface);
-      color: var(--color-primary);
+    .email-canvas {
+      background: var(--color-bg-alt);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
       padding: var(--space-lg);
+    }
+
+    .inbox-head {
+      max-width: 600px;
+      margin: 0 auto var(--space-md);
+      padding: var(--space-sm) var(--space-md);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .inbox-head .from {
+      color: var(--color-text-secondary);
+      font-size: 12px;
+    }
+
+    .inbox-head b {
+      display: block;
+      font-size: 15px;
+    }
+
+    .inbox-head .pre {
+      color: var(--color-text-secondary);
+    }
+
+    .email {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      color: var(--color-primary);
+    }
+
+    .em-top {
+      padding: var(--space-md) var(--space-lg) var(--space-sm);
       text-align: center;
+    }
+
+    .em-top img {
+      height: 56px;
+      width: auto;
+    }
+
+    .em-rule {
+      height: 5px;
+      margin: 0 var(--space-lg);
+      border-top: 3px solid var(--color-primary);
+      border-bottom: 1px solid var(--color-primary);
+    }
+
+    .em-hero {
+      padding: var(--space-xl) var(--space-lg) var(--space-lg);
+      background: var(--color-bg-alt);
+      text-align: center;
+    }
+
+    .em-hero .seal {
+      width: 84px;
+      height: 84px;
+      margin: 0 auto var(--space-sm);
+    }
+
+    .em-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: var(--space-xs);
+    }
+
+    .em-hero h2 {
+      font-family: var(--font-heading);
+      font-size: 34px;
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      margin-bottom: var(--space-sm);
+      text-wrap: balance;
+    }
+
+    .em-hero p {
+      max-width: 44ch;
+      margin: 0 auto;
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--color-text-secondary);
+    }
+
+    .em-section {
+      padding: var(--space-lg);
+    }
+
+    .em-hi {
+      font-size: 13px;
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-md);
+    }
+
+    .em-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+      padding-bottom: var(--space-xs);
       border-bottom: 1px solid var(--color-border);
     }
 
-    .email-header .logo-text {
-      color: var(--color-primary);
-      font-size: 20px;
+    .em-item {
+      display: grid;
+      grid-template-columns: 88px 1fr auto;
+      gap: var(--space-md);
+      align-items: center;
+      padding: var(--space-md) 0;
+      border-bottom: 1px solid var(--color-border);
     }
 
-    .email-body {
+    .em-item .cover {
       background: var(--color-surface);
-      padding: var(--space-lg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
     }
 
-    .email-body h2 {
+    .em-item .cover img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+
+    .em-item h3 {
       font-family: var(--font-heading);
-      font-size: 22px;
-      margin-bottom: var(--space-sm);
+      font-size: 17px;
+      line-height: 1.25;
+      margin-bottom: 2px;
     }
 
-    .email-body p {
+    .em-item .meta {
+      font-size: 13px;
+      color: var(--color-text-secondary);
+    }
+
+    .em-item .cond {
+      display: inline-block;
+      margin-top: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--color-warning);
+    }
+
+    .em-item .price {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .em-total {
+      display: flex;
+      justify-content: space-between;
+      padding-top: var(--space-sm);
       font-size: 14px;
       color: var(--color-text-secondary);
-      line-height: 1.8;
-      margin-bottom: var(--space-md);
+    }
+
+    .em-total b {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      color: var(--color-primary);
+    }
+
+    /* Cupón tipo boleta */
+    .em-coupon {
+      display: grid;
+      grid-template-columns: 112px 1fr;
+      margin: 0 var(--space-lg);
+      border: 1.5px solid var(--color-accent);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .em-coupon .stub {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-sm);
+      background: var(--color-accent);
+      color: var(--color-on-accent);
+      text-align: center;
+      border-right: 2px dashed var(--color-surface);
+    }
+
+    .em-coupon .stub strong {
+      font-family: var(--font-heading);
+      font-size: 32px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .em-coupon .stub span {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .em-coupon .body {
+      padding: var(--space-md);
+      background: var(--color-bg-alt);
+    }
+
+    .em-coupon .body p {
+      font-size: 13px;
+      color: var(--color-text-secondary);
+    }
+
+    .em-coupon .code {
+      display: inline-block;
+      margin: 6px 0;
+      padding: 4px 14px;
+      border: 1px dashed var(--color-primary);
+      background: var(--color-surface);
+      font-family: var(--font-heading);
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
     }
 
     .email-cta {
       display: block;
-      text-align: center;
-      background: var(--color-accent);
-      color: white;
-      padding: 14px 24px;
+      margin: var(--space-lg);
+      padding: 16px 24px;
       border-radius: var(--radius-sm);
-      font-weight: 600;
+      background: var(--color-accent);
+      color: var(--color-on-accent);
+      text-align: center;
       text-decoration: none;
-      font-size: 15px;
-      transition: all var(--transition);
+      font-size: 16px;
+      font-weight: 600;
+      transition: background var(--transition);
     }
 
-    .email-footer {
+    .email-cta:hover {
+      background: var(--color-accent-hover);
+    }
+
+    .em-trust {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-sm);
+      padding: var(--space-md) var(--space-lg);
       background: var(--color-bg-alt);
-      padding: var(--space-md);
-      text-align: center;
-      font-size: 11px;
-      color: var(--color-text-secondary);
       border-top: 1px solid var(--color-border);
+      font-size: 12px;
+      color: var(--color-text-secondary);
+      line-height: 1.4;
+    }
+
+    .em-trust b {
+      display: block;
+      color: var(--color-primary);
+      font-size: 13px;
+    }
+
+    .em-trust svg {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--color-accent);
+    }
+
+    .em-recs {
+      padding: var(--space-lg);
+    }
+
+    .em-recs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-sm);
+      margin-top: var(--space-sm);
+    }
+
+    .em-rec {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--color-surface);
+    }
+
+    .em-rec .cover {
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .em-rec img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+
+    .em-rec div.t {
+      padding: 10px 12px 12px;
+      font-size: 12px;
+      color: var(--color-text-secondary);
+    }
+
+    .em-rec div.t b {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 14px;
+      color: var(--color-primary);
+      line-height: 1.25;
+    }
+
+    .em-footer {
+      padding: var(--space-lg);
+      background: var(--color-primary);
+      color: var(--color-bg);
+      text-align: center;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .em-footer img {
+      width: 72px;
+      height: auto;
+      margin-bottom: var(--space-sm);
+    }
+
+    .em-footer a {
+      color: var(--color-bg);
+      opacity: 0.7;
+    }
+
+    .email-notes {
+      position: sticky;
+      top: 96px;
+      list-style: none;
+      counter-reset: note;
+    }
+
+    .email-notes li {
+      counter-increment: note;
+      position: relative;
+      padding: 0 0 var(--space-md) 40px;
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--color-text-secondary);
+    }
+
+    .email-notes li::before {
+      content: counter(note);
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: grid;
+      place-items: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      color: var(--color-bg);
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .email-notes b {
+      display: block;
+      color: var(--color-primary);
+      font-size: 14px;
     }
 
     /* =============================================
@@ -1133,214 +1638,1100 @@
     }
 
     /* =============================================
+       SECCIÓN: IDENTIDAD VISUAL (tablero de logos)
+    ============================================= */
+    .logo-board {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: var(--space-md);
+    }
+
+    .logo-tile {
+      grid-column: span 3;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .logo-tile.span-2 {
+      grid-column: span 2;
+    }
+
+    .logo-tile.span-6 {
+      grid-column: span 6;
+    }
+
+    .logo-stage {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-xl);
+      min-height: 220px;
+      background: var(--color-bg);
+    }
+
+    .logo-stage.is-parchment {
+      background: var(--color-bg-alt);
+    }
+
+    .logo-stage.is-dark {
+      background: var(--color-primary);
+    }
+
+    .logo-stage img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    .logo-stage.is-dark img.invert {
+      filter: invert(1);
+    }
+
+    .logo-caption {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      padding: 12px var(--space-sm);
+      border-top: 1px solid var(--color-border);
+      background: var(--color-surface);
+      font-size: 12px;
+      color: var(--color-text-secondary);
+    }
+
+    .logo-caption b {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-primary);
+    }
+
+    .logo-rules {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+      margin-top: var(--space-xl);
+    }
+
+    .logo-rules h4 {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      margin-bottom: var(--space-sm);
+    }
+
+    .logo-rules ul {
+      list-style: none;
+      font-size: 14px;
+      color: var(--color-text-secondary);
+    }
+
+    .logo-rules li {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .logo-rules li b {
+      color: var(--color-primary);
+    }
+
+    /* PILARES DEL CONCEPTO */
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-md);
+    }
+
+    .pillar {
+      border-top: 2px solid var(--color-primary);
+      padding-top: var(--space-sm);
+    }
+
+    .pillar .num {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      color: var(--color-accent);
+    }
+
+    .pillar h3 {
+      font-family: var(--font-heading);
+      font-size: 19px;
+      margin: 4px 0 8px;
+    }
+
+    .pillar p {
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      line-height: 1.65;
+    }
+
+    .subhead {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      margin: var(--space-xl) 0 var(--space-xs);
+    }
+
+    .subhead:first-of-type {
+      margin-top: 0;
+    }
+
+    .group-label {
+      margin-bottom: var(--space-sm);
+    }
+
+    /* COLORES */
+    .color-bar {
+      display: flex;
+      height: 160px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      margin-bottom: var(--space-xl);
+    }
+
+    .color-bar > button {
+      min-width: 140px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: var(--space-sm);
+      border: none;
+      border-right: 1px solid var(--color-border);
+      text-align: left;
+      font-family: var(--font-body);
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .color-bar > button:last-child {
+      border-right: none;
+    }
+
+    .color-bar strong {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .color-bar span {
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .swatch-preview.has-border {
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    /* =============================================
+       SECCIÓN: LANDING (orden de la información)
+    ============================================= */
+    .landing-order {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: var(--space-sm);
+      list-style: none;
+      counter-reset: step;
+      margin-bottom: var(--space-xl);
+    }
+
+    .landing-order::before {
+      content: '';
+      position: absolute;
+      top: 15px;
+      left: 16px;
+      right: 16px;
+      height: 1px;
+      background: var(--color-border);
+    }
+
+    .landing-order li {
+      position: relative;
+      counter-increment: step;
+      font-size: 12px;
+      color: var(--color-text-secondary);
+      line-height: 1.45;
+    }
+
+    .landing-order li::before {
+      content: counter(step);
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      margin-bottom: var(--space-xs);
+      border-radius: 50%;
+      background: var(--color-primary);
+      color: var(--color-bg);
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .landing-order li:first-child::before {
+      background: var(--color-accent);
+    }
+
+    .landing-order b {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 16px;
+      color: var(--color-primary);
+    }
+
+    .landing-frame {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--color-bg);
+      box-shadow: var(--shadow-card);
+    }
+
+    .browser-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px var(--space-sm);
+      background: var(--color-bg-alt);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .browser-bar i {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--color-border);
+    }
+
+    .browser-url {
+      flex: 1;
+      max-width: 340px;
+      margin: 0 auto;
+      padding: 4px 14px;
+      border-radius: var(--radius-pill);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      font-size: 11px;
+      color: var(--color-text-secondary);
+      text-align: center;
+    }
+
+    .announce {
+      padding: 8px var(--space-sm);
+      background: var(--color-primary);
+      color: var(--color-bg);
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .store-nav {
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
+      padding: var(--space-sm) var(--space-lg);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .store-nav img {
+      height: 48px;
+      width: auto;
+    }
+
+    .menu-btn {
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background: var(--color-surface);
+      color: var(--color-primary);
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+
+    .menu-btn:hover {
+      background: var(--color-bg-alt);
+    }
+
+    .store-nav .search {
+      position: relative;
+      flex: 1;
+    }
+
+    .store-nav .search .input {
+      width: 100%;
+      height: 40px;
+      padding-left: 38px;
+      background: var(--color-bg-alt);
+      border-color: var(--color-bg-alt);
+    }
+
+    .store-nav .search svg {
+      position: absolute;
+      left: 12px;
+      top: 11px;
+      color: var(--color-text-secondary);
+    }
+
+    .store-links {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .store-links .cart {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--color-border);
+      border-radius: 50%;
+    }
+
+    .store-links .cart b {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      display: grid;
+      place-items: center;
+      min-width: 18px;
+      height: 18px;
+      border-radius: var(--radius-pill);
+      background: var(--color-accent);
+      color: var(--color-on-accent);
+      font-size: 10px;
+    }
+
+    .landing-block {
+      position: relative;
+      padding: var(--space-xl) var(--space-lg);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .landing-block:last-child {
+      border-bottom: none;
+    }
+
+    .landing-block.is-parchment {
+      background: var(--color-bg-alt);
+    }
+
+    .landing-block.is-dark {
+      background: var(--color-primary);
+      color: var(--color-bg);
+    }
+
+    .block-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: var(--space-sm);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+    }
+
+    .block-tag b {
+      display: grid;
+      place-items: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--color-accent);
+      color: var(--color-on-accent);
+      font-family: var(--font-heading);
+      font-size: 12px;
+    }
+
+    .landing-block.is-dark .block-tag {
+      color: var(--color-bg);
+    }
+
+    .landing-block.is-dark .block-tag b {
+      background: var(--color-bg);
+      color: var(--color-primary);
+    }
+
+    .block-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+
+    .block-head h3,
+    .landing-block h3 {
+      font-family: var(--font-heading);
+      font-size: 30px;
+      line-height: 1.15;
+    }
+
+    .block-link {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-accent);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .block-link:hover {
+      text-decoration: underline;
+    }
+
+    /* 01 · Promesa */
+    .mini-hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: var(--space-lg);
+      align-items: center;
+    }
+
+    .mini-hero h3 {
+      font-size: 38px;
+      margin-bottom: var(--space-sm);
+    }
+
+    .mini-hero p {
+      max-width: 44ch;
+      margin-bottom: var(--space-md);
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+
+    .mini-hero-art {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-sm);
+    }
+
+    .mini-hero-art img {
+      width: 33%;
+    }
+
+    /* 02 · Confianza */
+    .trust-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 0;
+    }
+
+    .trust-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: var(--space-md) var(--space-lg);
+      border-right: 1px solid var(--color-border);
+      font-size: 13px;
+      color: var(--color-text-secondary);
+      line-height: 1.4;
+    }
+
+    .trust-item:last-child {
+      border-right: none;
+    }
+
+    .trust-item svg {
+      flex-shrink: 0;
+      color: var(--color-accent);
+    }
+
+    .trust-item b {
+      display: block;
+      color: var(--color-primary);
+      font-size: 14px;
+    }
+
+    /* 03 · Categorías */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .category-chip {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-md);
+      min-height: 124px;
+      padding: var(--space-sm);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      color: var(--color-primary);
+      text-decoration: none;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 1.25;
+      transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+
+    .category-chip:hover {
+      border-color: var(--color-primary);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .category-chip small {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .cat-icon {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--color-bg-alt);
+      color: var(--color-accent);
+      transition: background var(--transition), color var(--transition);
+    }
+
+    .category-chip:hover .cat-icon {
+      background: var(--color-primary);
+      color: var(--color-bg);
+    }
+
+    .cat-arrow {
+      font-family: var(--font-body);
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--color-accent);
+    }
+
+    /* 05 · Vender */
+    .sell-banner {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+
+    .sell-banner img {
+      width: 150px;
+      height: auto;
+    }
+
+    .sell-banner h3 {
+      margin-bottom: var(--space-xs);
+    }
+
+    .sell-banner p {
+      max-width: 52ch;
+      font-size: 15px;
+      line-height: 1.6;
+      opacity: 0.8;
+    }
+
+    .landing-block.is-dark .btn-secondary {
+      color: var(--color-bg);
+      border-color: var(--color-bg);
+    }
+
+    .landing-block.is-dark .btn-secondary:hover {
+      background: var(--color-bg);
+      color: var(--color-primary);
+    }
+
+    /* 06 · Cierre */
+    .closing {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+
+    .closing p {
+      color: var(--color-text-secondary);
+      margin: var(--space-xs) 0 var(--space-md);
+      max-width: 44ch;
+    }
+
+    .newsletter {
+      display: flex;
+      gap: var(--space-sm);
+      max-width: 520px;
+    }
+
+    .newsletter .input {
+      flex: 1;
+      height: 44px;
+    }
+
+    .closing-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: var(--space-sm);
+      text-align: right;
+      font-size: 12px;
+      color: var(--color-text-secondary);
+    }
+
+    .closing-brand img {
+      height: 56px;
+      width: auto;
+    }
+
+    /* UTILIDADES DE COMPONENTES */
+    .tokens-note {
+      font-size: 13px;
+      color: var(--color-text-secondary);
+    }
+
+    .form-card {
+      background: var(--color-surface);
+      padding: var(--space-md);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-card);
+    }
+
+    .form-card h4 {
+      font-family: var(--font-heading);
+      margin-bottom: var(--space-sm);
+    }
+
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: var(--color-text-secondary);
+    }
+
+    .form-card .input {
+      width: 100%;
+      height: 40px;
+    }
+
+    .search-wrap {
+      position: relative;
+      margin-bottom: var(--space-sm);
+    }
+
+    .search-wrap svg {
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      color: var(--color-text-secondary);
+    }
+
+    .search-wrap .input {
+      padding-left: 40px;
+      height: 44px;
+    }
+
+    .btn-block {
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* =============================================
        RESPONSIVE
     ============================================= */
     @media (max-width: 900px) {
       .hero {
-        grid-template-columns: 1fr !important;
-        text-align: center !important;
+        grid-template-columns: 1fr;
       }
-      .hero-desc {
-        margin: 0 auto var(--space-xl) auto !important;
+
+      .page-index {
+        grid-template-columns: repeat(2, 1fr);
       }
-      .hero-buttons {
-        justify-content: center;
+
+      .page-index a:nth-child(4n) {
+        border-right: 1px solid var(--color-border);
       }
-      .color-composition-bar {
-        flex-direction: column;
-        height: auto !important;
+
+      .page-index a:nth-child(2n) {
+        border-right: none;
       }
-      .color-composition-bar > div {
-        height: 80px;
-        justify-content: center;
-        align-items: center !important;
+
+      .page-index a:nth-child(n+5) {
+        border-bottom: 1px solid var(--color-border);
       }
+
+      .page-index a:nth-child(n+7) {
+        border-bottom: none;
+      }
+
+      .pillars,
+      .trust-bar {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .landing-order {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .category-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .logo-tile.span-2 {
+        grid-column: span 3;
+      }
+
       #html-moodboard {
         grid-template-columns: 1fr !important;
       }
-      .components-grid {
-        grid-template-columns: 1fr !important;
-      }
+
       .header-inner {
         flex-direction: column;
-        gap: var(--space-md);
+        gap: var(--space-sm);
       }
     }
 
     @media (max-width: 768px) {
+      .container {
+        padding: 0 var(--space-sm);
+      }
+
       .concept-grid,
-      .logo-showcase,
-      .book-cards {
+      .logo-rules,
+      .tension-row,
+      .sell-banner,
+      .form-grid-2 {
         grid-template-columns: 1fr;
       }
 
-      .tension-row {
-        grid-template-columns: 1fr;
+      .logo-tile,
+      .logo-tile.span-2,
+      .logo-tile.span-6 {
+        grid-column: span 6;
+      }
+
+      .hero-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-sm);
+      }
+
+      .hero-stat strong {
+        font-size: 22px;
+      }
+
+      .hero-art-seal {
+        width: 80px;
+        height: 80px;
+      }
+
+      .tension-vs {
+        transform: rotate(90deg);
       }
 
       nav {
         display: none;
       }
 
-      .hero-title {
-        font-size: 40px;
+      .color-bar {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .color-bar > button {
+        min-height: 72px;
+        flex: none !important;
+        width: 100% !important;
+        border-right: none;
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .newsletter {
+        flex-direction: column;
+      }
+
+      .voice-table {
+        display: block;
+        overflow-x: auto;
       }
     }
+
+    @media (max-width: 520px) {
+      .pillars,
+      .trust-bar,
+      .category-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .landing-order {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .page-index {
+        grid-template-columns: 1fr;
+      }
+
+      .page-index a,
+      .page-index a:nth-child(n) {
+        border-right: none;
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .page-index a:last-child {
+        border-bottom: none;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .landing-order::before {
+        display: none;
+      }
+
+      .hero-stage {
+        margin: 0 auto;
+      }
+
+      .book-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .email-layout,
+      .mini-hero,
+      .closing,
+      .sell-banner {
+        grid-template-columns: 1fr;
+      }
+
+      .email-notes {
+        position: static;
+      }
+
+      .closing-brand {
+        align-items: flex-start;
+        text-align: left;
+      }
+
+      .trust-bar {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .trust-item:nth-child(2) {
+        border-right: none;
+      }
+
+      .store-nav {
+        flex-wrap: wrap;
+      }
+
+      .store-nav .search {
+        order: 3;
+        flex-basis: 100%;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .book-cards,
+      .trust-bar {
+        grid-template-columns: 1fr;
+      }
+
+      .trust-item {
+        border-right: none;
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .hero-chip {
+        font-size: 11px;
+        padding: 6px 10px;
+      }
+
+      .em-item {
+        grid-template-columns: 64px 1fr;
+      }
+
+      .em-item .price {
+        grid-column: 2;
+      }
+
+      .em-trust,
+      .em-recs-grid,
+      .em-coupon {
+        grid-template-columns: 1fr;
+      }
+
+      .em-coupon .stub {
+        border-right: none;
+        border-bottom: 2px dashed var(--color-surface);
+      }
+
+      .email-canvas {
+        padding: var(--space-sm);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* Ajustes de accesibilidad y botones-muestra */
+    .type-meta-detail {
+      color: var(--color-text-secondary);
+    }
+
+    .input::placeholder {
+      color: var(--color-text-secondary);
+      opacity: 0.6;
+    }
+
+    button.color-swatch {
+      display: block;
+      width: 100%;
+      padding: 0;
+      background: var(--color-surface);
+      text-align: left;
+      font-family: var(--font-body);
+      color: inherit;
+    }
+
+    .color-bar > button:focus-visible,
+    .color-swatch:focus-visible,
+    .btn:focus-visible,
+    .book-btn:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+    }
+
   </style>
 </head>
 
-<body data-version="a" id="root">
+<body id="root">
 
   <!-- ================= HEADER ================= -->
   <header class="site-header">
     <div class="header-inner">
-      <div class="logo-mark">
-        <!-- Isotipo SVG -->
-        <img src="assets/logos/SVG/Isotipo.svg" alt="Incunabula Isotipo" class="logo-icon"
-          style="object-fit: contain;">
-        <div>
-          <span class="logo-text">INCUNABULA</span>
-          <span class="logo-sub">Sistema de Diseño</span>
-        </div>
-      </div>
-
-      <nav>
-        <a href="#concepto">Concepto</a>
-        <a href="#colores">Colores</a>
-        <a href="#tipografia">Tipografía</a>
+      <a href="#top" aria-label="Incunabula Librería — inicio">
+        <img class="brand-logo" src="assets/logos/v2/logotipo-h.svg" alt="Incunabula Librería">
+      </a>
+      <nav aria-label="Secciones">
+        <a href="#concepto">Marca</a>
         <a href="#logo">Logo</a>
+        <a href="#colores">Colores</a>
+        <a href="#tipografia">Letras</a>
         <a href="#componentes">Componentes</a>
+        <a href="#landing">Landing</a>
         <a href="#correos">Correos</a>
         <a href="#voz">Voz</a>
       </nav>
-
-      <div class="version-toggle">
-        <button class="version-btn active" onclick="setVersion('a', this)">A — Pergamino</button>
-        <button class="version-btn" onclick="setVersion('b', this)">B — Vanguardia</button>
-      </div>
     </div>
   </header>
 
 
-  <!-- ================= HERO ================= -->
-  <div class="container">
-    <div class="hero" style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: var(--space-2xl); text-align: left; align-items: center;">
-      <div>
-        <div class="hero-eyebrow">
-          <span class="dot"></span>
-          Sistema de Diseño · v2.2
-        </div>
-        <h1 class="hero-title" style="font-size: clamp(42px, 6vw, 72px); margin-bottom: var(--space-md); text-wrap: balance; line-height: 1.1;">
-          Tu próxima lectura <span class="hero-accent">te está esperando.</span>
-        </h1>
-        <p class="hero-desc" style="margin: 0 0 var(--space-xl) 0; max-width: 480px; font-size: 18px; text-wrap: pretty; line-height: 1.6;">
-          La magia de una librería clásica llevada al mundo digital. No somos una bodega estéril; ofrecemos el catálogo curado más grande de Colombia, creciendo cada vez que un lector le da nueva vida a un libro.
-        </p>
-        <div class="hero-buttons" style="display: flex; flex-wrap: wrap; gap: var(--space-sm); margin-bottom: var(--space-xl);">
-          <button class="btn btn-primary btn-lg hover-lift" style="display: flex; align-items: center; gap: 8px;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> 
-            Explorar Catálogo
-          </button>
-          <button class="btn btn-secondary btn-lg hover-lift" style="display: flex; align-items: center; gap: 8px;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg> 
-            Vender mis libros
-          </button>
-        </div>
-        <span class="hero-version-badge hover-lift" id="version-badge" style="display: inline-block;">Versión A — Tinta
-          y Pergamino</span>
-      </div>
-      <div style="position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; padding: 32px;">
-        <!-- Libro Destacado 1 -->
-        <div style="position: relative; transform: translateY(40px);" class="hover-lift">
-          <div style="position: relative; background: var(--color-bg-alt); padding: 0; border: 1px solid var(--color-border); box-shadow: var(--shadow-card); border-radius: 2px; overflow: hidden;">
-            <img src="assets/photos/1000_anos.webp" style="width: 100%; display: block; object-fit: cover; aspect-ratio: 2/3;" alt="Libro Destacado 1">
+  <!-- ================= HERO BANNER ================= -->
+  <div class="hero-band" id="top">
+    <div class="container">
+      <div class="hero">
+        <div>
+          <div class="hero-eyebrow"><span class="dot"></span> Sistema de diseño · v3.0</div>
+          <h1 class="hero-title">Tu próxima lectura <span class="hero-accent">te está esperando.</span></h1>
+          <p class="hero-desc">
+            La magia de una librería clásica llevada al mundo digital. Un catálogo curado que crece cada vez que un lector le da nueva vida a un libro. Solo vendemos libros originales.
+          </p>
+          <div class="hero-buttons">
+            <a class="btn btn-primary btn-lg hover-lift" href="#landing">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              Explorar catálogo
+            </a>
+            <a class="btn btn-secondary btn-lg hover-lift" href="#landing">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              Vender mis libros
+            </a>
           </div>
-          <div style="position: absolute; bottom: 24px; left: -24px; background: var(--color-surface); border: 1px solid var(--color-border); padding: 10px 16px; box-shadow: var(--shadow-hover); font-family: var(--font-body); font-weight: 600; font-size: 12px; letter-spacing: 0.05em; display: flex; align-items: center; gap: 8px; z-index: 2;">
-            <span style="width: 6px; height: 6px; background: var(--color-success); border-radius: 50%;"></span> $25.000 COP
+          <div class="hero-stats">
+            <div class="hero-stat"><strong>21.735</strong><span>libros catalogados</span></div>
+            <div class="hero-stat"><strong>6.457</strong><span>listos para envío</span></div>
+            <div class="hero-stat"><strong>81 %</strong><span>usados, con historia</span></div>
           </div>
         </div>
-        <!-- Libro Destacado 2 -->
-        <div style="position: relative; transform: translateY(-20px);" class="hover-lift">
-          <div style="position: relative; background: var(--color-bg-alt); padding: 0; border: 1px solid var(--color-border); box-shadow: var(--shadow-hover); border-radius: 2px; overflow: hidden;">
-            <img src="assets/photos/teatro.webp" style="width: 100%; display: block; object-fit: cover; aspect-ratio: 2/3;" alt="Libro Destacado 2">
-          </div>
-          <div style="position: absolute; top: -16px; right: -24px; background: var(--color-accent); color: white; padding: 10px 16px; font-family: var(--font-body); font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; box-shadow: var(--shadow-accent); z-index: 2;">
-            -10% dto
-          </div>
+
+        <div class="hero-stage" role="img" aria-label="Tres portadas de libros: 100 historias de oración, 1000 años de alegrías y penas y Teatro completo">
+          <img class="hero-book b1" src="assets/photos/100_historias.webp" alt="">
+          <img class="hero-book b3" src="assets/photos/teatro.webp" alt="">
+          <img class="hero-book b2" src="assets/photos/1000_anos.webp" alt="">
+          <span class="hero-chip off">−10 % en Teatro completo</span>
+          <span class="hero-chip price">1000 años… · $25.000</span>
+          <div class="hero-seal"><img src="assets/logos/v2/sello-positivo.svg" alt="Sello Incunabula"></div>
         </div>
       </div>
     </div>
   </div>
 
+  <div class="container page-index-wrap">
+    <!-- Índice: cómo se lee esta página -->
+    <div class="page-index">
+      <a href="#concepto"><span class="num">01</span><span class="name">Marca</span><span class="hint">Concepto y manifiesto</span></a>
+      <a href="#logo"><span class="num">02</span><span class="name">Identidad visual</span><span class="hint">Logotipo v.2 y sello</span></a>
+      <a href="#colores"><span class="num">03</span><span class="name">Colores</span><span class="hint">Blanco, pergamino, tinta</span></a>
+      <a href="#tipografia"><span class="num">04</span><span class="name">Letras</span><span class="hint">Fraunces e Inter</span></a>
+      <a href="#componentes"><span class="num">05</span><span class="name">Componentes</span><span class="hint">Botones, etiquetas, tarjetas</span></a>
+      <a href="#landing"><span class="num">06</span><span class="name">Landing</span><span class="hint">Orden de la información</span></a>
+      <a href="#correos"><span class="num">07</span><span class="name">Correos</span><span class="hint">Plantillas transaccionales</span></a>
+      <a href="#voz"><span class="num">08</span><span class="name">Voz</span><span class="hint">Tono nivel 3</span></a>
+    </div>
+  </div>
 
-  <!-- ================= CONCEPTO ================= -->
+
+  <!-- ================= 01 MARCA ================= -->
   <div class="container">
     <section class="section" id="concepto">
-      <div class="section-label">01 — Fundación de Marca</div>
-      <h2 class="section-title">El Concepto</h2>
+      <div class="section-label">01 — Fundación de marca</div>
+      <h2 class="section-title">El concepto</h2>
       <p class="section-desc">
-        Nacimos con una premisa: <strong>El conocimiento que ya existió, accesible de nuevo.</strong> Más que vender libros usados, somos guardianes de historias.<br><br>
-        <em>"Incunabula"</em> (cuna o origen) nos conecta con los primeros libros que democratizaron la lectura. Hoy, tomamos joyas empolvadas y las ponemos a circular. Somos <strong>Cultos</strong> (amamos el objeto-libro), <strong>Accesibles</strong> (sin elitismos) y <strong>Vivos</strong> (un catálogo que respira a diario).
+        Nacimos con una premisa: <strong>el conocimiento que ya existió, accesible de nuevo.</strong> Más que vender libros usados, somos guardianes de historias. Somos <strong>cultos</strong> (amamos el objeto-libro), <strong>accesibles</strong> (sin elitismos) y <strong>vivos</strong> (un catálogo que respira a diario).
       </p>
 
-      <div class="concept-grid">
-        <div class="concept-card">
-          <div class="concept-card-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-              stroke-linecap="round" stroke-linejoin="round" class="feather-icon">
-              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-            </svg>
-          </div>
+      <div class="pillars">
+        <div class="pillar">
+          <span class="num">01</span>
           <h3>La palabra fundacional</h3>
-          <p><em>Incunabulum</em> ("cuna" u "origen"). Para la marca, los incunables representan el inicio de una nueva
-            circulación masiva del saber a través del libro impreso en Europa occidental. Incunabula hace lo mismo hoy:
-            pone de nuevo en circulación libros que ya existieron para quienes desean leer.</p>
+          <p><em>Incunabulum</em> es "cuna" u "origen": los primeros libros impresos en Europa. Incunabula pone hoy de nuevo en circulación libros que ya existieron.</p>
         </div>
-        <div class="concept-card">
-          <div class="concept-card-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-              stroke-linecap="round" stroke-linejoin="round" class="feather-icon">
-              <path d="M21 2v6h-6"></path>
-              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
-              <path d="M3 3v6h6"></path>
-              <path d="M21 12a9 9 0 1 0-9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"></path>
-            </svg>
-          </div>
+        <div class="pillar">
+          <span class="num">02</span>
           <h3>El eterno retorno</h3>
-          <p>Un libro usado no es viejo, es un libro con experiencia. En Incunabula actuamos como esa segunda imprenta
-            que le otorga una nueva vida dentro de una nueva biblioteca personal.</p>
+          <p>Un libro usado no es viejo, es un libro con experiencia. Somos esa segunda imprenta que le da una nueva vida en otra biblioteca.</p>
         </div>
-        <div class="concept-card">
-          <div class="concept-card-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-              stroke-linecap="round" stroke-linejoin="round" class="feather-icon">
-              <path d="M12 2v20"></path>
-              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-            </svg>
-          </div>
+        <div class="pillar">
+          <span class="num">03</span>
           <h3>La doble tensión</h3>
-          <p>La marca habita el equilibrio perfecto entre el peso cultural (el aura intocable de lo clásico) y el acceso
-            universal, ofreciendo joyas editoriales con envíos rápidos y precios justos.</p>
+          <p>Peso cultural y acceso universal en equilibrio: joyas editoriales con envíos rápidos y precios justos.</p>
         </div>
-        <div class="concept-card">
-          <div class="concept-card-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-              stroke-linecap="round" stroke-linejoin="round" class="feather-icon">
-              <path
-                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
-              </path>
-              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-              <line x1="12" y1="22.08" x2="12" y2="12"></line>
-            </svg>
-          </div>
+        <div class="pillar">
+          <span class="num">04</span>
           <h3>El catálogo orgánico</h3>
-          <p>No somos una bodega estéril ni una élite. Ofrecemos el único catálogo en Colombia con miles de títulos
-            curados minuciosamente, creciendo con el aporte de cada lector que se despide de un libro.</p>
+          <p>Ni bodega estéril ni élite: miles de títulos curados que crecen con el aporte de cada lector.</p>
         </div>
       </div>
 
-      <!-- Tensión de marca -->
       <div class="tension-row">
         <div class="tension-pole">
           <h4>Polo cultural</h4>
@@ -1351,101 +2742,180 @@
             <li>La palabra "incunabula" (erudita)</li>
           </ul>
         </div>
-        <div class="tension-vs">↔</div>
+        <div class="tension-vs" aria-hidden="true">↔</div>
         <div class="tension-pole">
           <h4>Polo accesible</h4>
           <ul>
             <li>Catálogo total: 21.735 libros procesados</li>
-            <li>Stock actual: 6.457 joyas listas para envío</li>
+            <li>Existencias actuales: 6.457 joyas listas para envío</li>
             <li>La librería de todos</li>
             <li>"No solo para gente de cultura"</li>
           </ul>
         </div>
       </div>
 
-      <!-- Manifesto -->
       <div class="manifesto-block">
         <div class="manifesto-inner">
           <blockquote>
-            No vendemos simplemente libros usados. Rescatamos historias, curamos conocimiento y te lo entregamos listo
-            para ser leído de nuevo.<br><br>
-            Porque el libro que acabas de leer, en lugar de acumular polvo, está destinado a desatar una nueva obsesión
-            en otra persona. Somos el punto de encuentro entre una biblioteca que termina y otra que recién comienza.
+            No vendemos simplemente libros usados. Rescatamos historias, curamos conocimiento y te lo entregamos listo para ser leído de nuevo.<br><br>
+            Porque el libro que acabas de leer, en lugar de acumular polvo, está destinado a desatar una nueva obsesión en otra persona. Somos el punto de encuentro entre una biblioteca que termina y otra que recién comienza.
           </blockquote>
           <cite>— Manifiesto Incunabula</cite>
         </div>
       </div>
+    </section>
+  </div>
 
-      <!-- Moodboard Dinámico -->
-      <div style="margin-top: var(--space-2xl);">
-        <h3 style="font-family: var(--font-heading); font-size: 24px; margin-bottom: var(--space-sm);">Moodboard de la Dirección de Arte</h3>
-        <p class="section-desc">Inspiración visual que guía la construcción del sistema gráfico y tipográfico.</p>
-        <div id="html-moodboard" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-card); background: var(--color-border); border: 1px solid var(--color-border);">
-           <img src="assets/photos/1000_anos.webp" style="width: 100%; height: 280px; object-fit: cover; background: var(--color-bg);">
-           <div style="background: var(--color-primary); display: flex; align-items: center; justify-content: center; padding: var(--space-lg);">
-              <img src="assets/logos/SVG/Isotipo.svg" style="width: 120px; filter: brightness(0) invert(1);">
-           </div>
-           <img src="assets/photos/teatro.webp" style="width: 100%; height: 280px; object-fit: cover; background: var(--color-bg);">
-           <div style="background: var(--color-bg-alt); padding: var(--space-xl); display: flex; flex-direction: column; justify-content: center; grid-column: span 2;">
-              <div style="font-family: var(--font-heading); font-size: 36px; line-height: 1.1; margin-bottom: 12px; color: var(--color-primary);">La textura del tiempo.</div>
-              <div style="font-family: var(--font-body); font-size: 16px; color: var(--color-text-secondary); max-width: 400px;">Una identidad tipográfica e iconográfica que respeta el linaje del libro como objeto cultural y herramienta de acceso democrático.</div>
-           </div>
-           <img src="assets/photos/100_historias.webp" style="width: 100%; height: 100%; object-fit: cover; background: var(--color-bg);">
+
+  <!-- ================= 02 IDENTIDAD VISUAL ================= -->
+  <div class="container">
+    <section class="section" id="logo">
+      <div class="section-label">02 — Identidad visual</div>
+      <h2 class="section-title">El símbolo: el Colporteur</h2>
+      <p class="section-desc">
+        Nuestra identidad gira alrededor del <strong>Colporteur</strong>, el vendedor ambulante de impresos: movimiento, curaduría y vida, pregonando el conocimiento desde su caja de libros. Lo redibujamos con el alto contraste del grabado <em>woodcut</em>, y la versión 2 suma el sello de impresor del siglo XV como firma de calidad.
+      </p>
+
+      <div class="logo-board">
+        <figure class="logo-tile">
+          <div class="logo-stage"><img src="assets/logos/v2/logotipo-h.svg" alt="Logotipo horizontal" style="width: min(100%, 420px);"></div>
+          <figcaption class="logo-caption"><b>Logotipo H · principal</b><span>Cabecera, firma de correo, membrete</span></figcaption>
+        </figure>
+        <figure class="logo-tile">
+          <div class="logo-stage is-dark"><img src="assets/logos/v2/logotipo-h-negativo.svg" alt="Logotipo horizontal en negativo" style="width: min(100%, 420px);"></div>
+          <figcaption class="logo-caption"><b>Logotipo H · negativo</b><span>Sobre Tinta #111111</span></figcaption>
+        </figure>
+
+        <figure class="logo-tile span-2">
+          <div class="logo-stage"><img src="assets/logos/v2/logotipo-v.svg" alt="Logotipo vertical" style="width: 190px;"></div>
+          <figcaption class="logo-caption"><b>Logotipo V</b><span>Portadas, empaques</span></figcaption>
+        </figure>
+        <figure class="logo-tile span-2">
+          <div class="logo-stage is-dark"><img src="assets/logos/v2/logotipo-v-negativo.svg" alt="Logotipo vertical en negativo" style="width: 190px;"></div>
+          <figcaption class="logo-caption"><b>Logotipo V · negativo</b><span>Sobre Tinta</span></figcaption>
+        </figure>
+        <figure class="logo-tile span-2">
+          <div class="logo-stage is-parchment"><img src="assets/logos/v2/logo-sello-positivo.svg" alt="Logo con sello, positivo" style="width: 190px;"></div>
+          <figcaption class="logo-caption"><b>Logo + sello</b><span>Versión oficial (colofón)</span></figcaption>
+        </figure>
+
+        <figure class="logo-tile span-2">
+          <div class="logo-stage is-dark"><img src="assets/logos/v2/logo-sello-negativo.svg" alt="Logo con sello, negativo" style="width: 190px;"></div>
+          <figcaption class="logo-caption"><b>Logo + sello · negativo</b><span>Pie de página</span></figcaption>
+        </figure>
+        <figure class="logo-tile span-2">
+          <div class="logo-stage is-parchment"><img src="assets/logos/v2/sello-positivo.svg" alt="Sello positivo" style="width: 150px;"></div>
+          <figcaption class="logo-caption"><b>Sello</b><span>Marca de impresor</span></figcaption>
+        </figure>
+        <figure class="logo-tile span-2">
+          <div class="logo-stage is-dark"><img src="assets/logos/v2/sello-negativo.svg" alt="Sello negativo" style="width: 150px;"></div>
+          <figcaption class="logo-caption"><b>Sello · negativo</b><span>Sobre Tinta</span></figcaption>
+        </figure>
+
+        <figure class="logo-tile span-2">
+          <div class="logo-stage"><img src="assets/logos/v2/isotipo.svg" alt="Isotipo del Colporteur" style="width: 150px;"></div>
+          <figcaption class="logo-caption"><b>Isotipo</b><span>Avatar, marca de agua</span></figcaption>
+        </figure>
+        <figure class="logo-tile span-2">
+          <div class="logo-stage is-dark"><img src="assets/logos/v2/isotipo-negativo.svg" alt="Isotipo en negativo" style="width: 150px;"></div>
+          <figcaption class="logo-caption"><b>Isotipo · negativo</b><span>Sobre Tinta</span></figcaption>
+        </figure>
+        <figure class="logo-tile span-2">
+          <div class="logo-stage is-parchment" style="gap: var(--space-sm); flex-wrap: wrap;">
+            <img src="assets/logos/v2/favicon-claro.svg" alt="Favicon" style="width: 72px;">
+            <img src="assets/logos/v2/favicon-claro.svg" alt="" style="width: 32px;">
+            <img src="assets/logos/v2/favicon-claro.svg" alt="" style="width: 16px;">
+            <span style="display: grid; place-items: center; width: 72px; height: 72px; background: var(--color-primary); border-radius: var(--radius-md);"><img src="assets/logos/v2/favicon-negativo.svg" alt="Favicon en negativo" style="width: 48px;"></span>
+          </div>
+          <figcaption class="logo-caption"><b>Favicon</b><span>Libro y mano · 16 a 180 px</span></figcaption>
+        </figure>
+
+        <figure class="logo-tile span-6">
+          <div class="logo-stage"><img src="assets/logos/v2/logotipo-solo.svg" alt="Logotipo, solo la palabra" style="width: min(100%, 360px);"></div>
+          <figcaption class="logo-caption"><b>Logotipo solo</b><span>Espacios muy bajos, donde "Librería" no se leería</span></figcaption>
+        </figure>
+      </div>
+
+      <div class="logo-rules">
+        <div>
+          <h4>Tamaños mínimos</h4>
+          <ul>
+            <li><b>Isotipo:</b> 32 px de alto (por debajo, usar el favicon).</li>
+            <li><b>Favicon:</b> desde 16 px; el SVG cambia solo a claro u oscuro.</li>
+            <li><b>Sello:</b> 96 px; a 64 px la corona de puntos se funde.</li>
+            <li><b>Logotipo H:</b> 160 px de ancho con "Librería"; menos, usar Logotipo solo.</li>
+            <li><b>Logotipo V:</b> 120 px de ancho.</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Reglas de uso</h4>
+          <ul>
+            <li><b>Zona de respeto:</b> la altura de la "I" de INCUNABULA en todos los lados.</li>
+            <li><b>Fondos:</b> blanco, pergamino o Tinta. Sobre fotos, solo con panel sólido.</li>
+            <li><b>No</b> recolorear, estirar, girar ni añadir sombras.</li>
+            <li><b>SVG</b> siempre en web; los PNG (~510 px) solo para documentos.</li>
+          </ul>
         </div>
       </div>
     </section>
   </div>
 
 
-  <!-- ================= COLORES ================= -->
+  <!-- ================= 03 COLORES ================= -->
   <div class="container">
     <section class="section" id="colores">
-      <div class="section-label">02 — Paleta de Colores</div>
-      <h2 class="section-title">Los Colores</h2>
-      <p class="section-desc" id="color-desc">
-        Queríamos que entrar a la web se sintiera como abrir un clásico. El <strong>Pergamino</strong> como fondo envuelve y relaja la vista. La <strong>Tinta</strong> no es un negro puro, sino un tono denso que evoca las imprentas originales. El <strong>Carmesí</strong> actúa como acento pasional, idéntico al rojo usado por los copistas para sus rúbricas capitulares.
+      <div class="section-label">03 — Paleta de colores</div>
+      <h2 class="section-title">Los colores</h2>
+      <p class="section-desc">
+        El <strong>blanco puro</strong> es el fondo del sitio: deja respirar las portadas. El <strong>pergamino</strong> queda para cajas de contraste (paneles, tarjetas destacadas, bloques editoriales). La <strong>tinta</strong> no es un negro puro sino un tono denso que evoca las imprentas originales, y el <strong>carmesí</strong> es el acento, idéntico al rojo de las rúbricas de los copistas.
       </p>
 
-      <h3 style="font-family: var(--font-heading); font-size: 24px; margin-bottom: var(--space-sm);">Regla de Proporción
-        UI (100%)</h3>
-      <div id="color-composition"
-        style="display: flex; height: 160px; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-card); margin-bottom: var(--space-xl);">
-        <!-- Proportional bar injected via JS -->
+      <h3 class="subhead">Regla de proporción de la interfaz</h3>
+      <div class="color-bar">
+        <button type="button" style="flex: 60; background: var(--color-bg); color: var(--color-primary);" data-hex="#FFFFFF" title="Clic para copiar">
+          <strong>60 %</strong><span>Blanco · fondo general</span>
+        </button>
+        <button type="button" style="flex: 25; background: var(--color-parchment); color: var(--color-primary);" data-hex="#F5F3EE" title="Clic para copiar">
+          <strong>25 %</strong><span>Pergamino · cajas de contraste</span>
+        </button>
+        <button type="button" style="flex: 10; background: var(--color-primary); color: var(--color-bg);" data-hex="#111111" title="Clic para copiar">
+          <strong>10 %</strong><span>Tinta · texto y estructura</span>
+        </button>
+        <button type="button" style="flex: 5; background: var(--color-accent); color: var(--color-on-accent);" data-hex="#B22222" title="Clic para copiar">
+          <strong>5 %</strong><span>Carmesí · CTA</span>
+        </button>
       </div>
 
-      <div class="color-composition-bar" style="margin-bottom: var(--space-xl); display: flex; height: 160px; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-card); border: 1px solid var(--color-border);">
-        <div style="flex: 3; background: var(--color-primary); display: flex; align-items: flex-end; padding: var(--space-md); color: var(--color-bg); font-family: var(--font-heading); font-size: 18px; font-weight: 700;">Tinta</div>
-        <div style="flex: 2; background: var(--color-bg); display: flex; align-items: flex-end; padding: var(--space-md); color: var(--color-primary); font-family: var(--font-heading); font-size: 18px; font-weight: 700;">Pergamino</div>
-        <div style="flex: 1; background: var(--color-accent); display: flex; align-items: flex-end; padding: var(--space-md); color: white; font-family: var(--font-heading); font-size: 18px; font-weight: 700;">Carmesí</div>
-      </div>
-
-      <h3 style="font-family: var(--font-heading); font-size: 18px; margin-bottom: var(--space-sm);">Tokens de Sistema
-        Completos</h3>
-      <div class="color-grid" id="color-grid">
-        <!-- Colores insertados por JS -->
+      <h3 class="subhead">Tokens del sistema</h3>
+      <p class="tokens-note" style="margin-bottom: var(--space-sm);">Clic en una muestra para copiar su código.</p>
+      <div class="color-grid">
+        <button type="button" class="color-swatch" data-hex="#111111"><div class="swatch-preview" style="background: #111111;"></div><div class="swatch-info"><div class="swatch-name">Tinta</div><div class="swatch-hex">#111111</div><div class="swatch-use">Texto · logo · encabezados</div></div></button>
+        <button type="button" class="color-swatch" data-hex="#FFFFFF"><div class="swatch-preview has-border" style="background: #FFFFFF;"></div><div class="swatch-info"><div class="swatch-name">Blanco</div><div class="swatch-hex">#FFFFFF</div><div class="swatch-use">Fondo principal del sitio</div></div></button>
+        <button type="button" class="color-swatch" data-hex="#F5F3EE"><div class="swatch-preview has-border" style="background: #F5F3EE;"></div><div class="swatch-info"><div class="swatch-name">Pergamino</div><div class="swatch-hex">#F5F3EE</div><div class="swatch-use">Cajas de contraste</div></div></button>
+        <button type="button" class="color-swatch" data-hex="#B22222"><div class="swatch-preview" style="background: #B22222;"></div><div class="swatch-info"><div class="swatch-name">Carmesí</div><div class="swatch-hex">#B22222</div><div class="swatch-use">CTA · descuentos · enlaces</div></div></button>
+        <button type="button" class="color-swatch" data-hex="#8B1A1A"><div class="swatch-preview" style="background: #8B1A1A;"></div><div class="swatch-info"><div class="swatch-name">Carmesí oscuro</div><div class="swatch-hex">#8B1A1A</div><div class="swatch-use">Hover del botón primario</div></div></button>
+        <button type="button" class="color-swatch" data-hex="#3D3D3D"><div class="swatch-preview" style="background: #3D3D3D;"></div><div class="swatch-info"><div class="swatch-name">Grafito</div><div class="swatch-hex">#3D3D3D</div><div class="swatch-use">Subtítulos · texto secundario</div></div></button>
+        <button type="button" class="color-swatch" data-hex="#E2DDD0"><div class="swatch-preview has-border" style="background: #E2DDD0;"></div><div class="swatch-info"><div class="swatch-name">Hueso</div><div class="swatch-hex">#E2DDD0</div><div class="swatch-use">Bordes · separadores</div></div></button>
+        <button type="button" class="color-swatch" data-hex="#3A6B35"><div class="swatch-preview" style="background: #3A6B35;"></div><div class="swatch-info"><div class="swatch-name">Musgo</div><div class="swatch-hex">#3A6B35</div><div class="swatch-use">Confirmaciones</div></div></button>
       </div>
     </section>
   </div>
 
 
-  <!-- ================= TIPOGRAFÍA ================= -->
+  <!-- ================= 04 TIPOGRAFÍA ================= -->
   <div class="container">
     <section class="section" id="tipografia">
-      <div class="section-label">03 — Sistema Tipográfico</div>
-      <h2 class="section-title">Las Letras</h2>
-      <p class="section-desc" id="type-desc">
-        Buscábamos una tipografía que gritara "Librería" pero mantuviera la calidez. Elegimos <strong>Fraunces</strong>, una Serif "Old Style" cuyas curvas asimétricas le otorgan una tremenda humanidad. Se siente erudita pero totalmente cercana.<br><br>
-        Para equilibrar su peso visual y facilitar la navegación de 20.000 libros, la combinamos con <strong>Inter</strong>, una geométrica infalible en pantallas de alta resolución.
+      <div class="section-label">04 — Sistema tipográfico</div>
+      <h2 class="section-title">Las letras</h2>
+      <p class="section-desc">
+        Buscábamos una tipografía que dijera "librería" sin perder calidez: <strong>Fraunces</strong>, una serif <em>Old Style</em> de curvas asimétricas, erudita pero cercana. Para facilitar la navegación de más de 20.000 libros la combinamos con <strong>Inter</strong>, una sans infalible en pantalla.
       </p>
 
-      <!-- Escala tipográfica -->
       <div class="type-specimen">
         <div class="type-meta">
-          <span class="type-meta-name" id="heading-font-name">Tipografía Primaria — Playfair Display (Serif)</span>
-          <span class="type-meta-detail">Uso: Encabezados principales, títulos de libros, citas del manifiesto. Aporta
-            el carácter editorial clásico.</span>
+          <span class="type-meta-name">Primaria — Fraunces (serif)</span>
+          <span class="type-meta-detail">Encabezados, títulos de libros, citas del manifiesto.</span>
         </div>
-
         <div class="type-scale-row">
           <span class="type-px">64px · Bold</span>
           <div class="type-display">Incunabula</div>
@@ -1462,333 +2932,182 @@
 
       <div class="type-specimen">
         <div class="type-meta">
-          <span class="type-meta-name" id="body-font-name">Tipografía Secundaria — Inter (Sans-Serif)</span>
-          <span class="type-meta-detail">Uso: Párrafos, metadatos, botones, navegación. Garantiza legibilidad impecable
-            en interfaces digitales.</span>
+          <span class="type-meta-name">Secundaria — Inter (sans-serif)</span>
+          <span class="type-meta-detail">Párrafos, metadatos, botones, navegación.</span>
         </div>
-
         <div class="type-scale-row">
           <span class="type-px">16px · Regular</span>
-          <div class="type-body">Un libro que ya vivió su primera historia y está listo para la segunda. Bien conservado
-            — guardó perfectamente sus páginas durante años en una biblioteca bogotana antes de llegar a nosotros.</div>
+          <div class="type-body">Un libro que ya vivió su primera historia y está listo para la segunda. Bien conservado: guardó perfectamente sus páginas durante años en una biblioteca bogotana antes de llegar a nosotros.</div>
         </div>
         <div class="type-scale-row">
           <span class="type-px">13px · Medium</span>
-          <div class="type-small">Usado · Español · 496 páginas · Estado: Bueno</div>
+          <div class="type-small">Usado, muy bueno · Español · 496 páginas</div>
         </div>
         <div class="type-scale-row">
           <span class="type-px">11px · SemiBold</span>
           <div class="type-caption">Literatura · Colombia · Realismo mágico</div>
         </div>
       </div>
-
     </section>
   </div>
 
 
-  <!-- ================= LOGO ================= -->
-  <div class="container">
-    <section class="section" id="logo">
-      <div class="section-label">04 — Identidad Visual</div>
-      <h2 class="section-title">El Símbolo: El Colporteur</h2>
-      <p class="section-desc">
-        Nuestra identidad orbita alrededor del <strong>Colporteur</strong>, el vendedor ambulante de impresos de la antigüedad. Él es movimiento, curaduría y vida, pregonando el conocimiento desde su caja frontal.<br><br>
-        Lo redibujamos buscando el alto contraste del grabado "Woodcut", logrando que la figura sea igual de potente en un banner gigante como en un minúsculo favicon de navegador.
-      </p>
-
-      <div class="logo-showcase">
-        <div class="logo-variant">
-          <span class="logo-variant-label">Imagotipo Dinámico (Positivo)</span>
-          <div style="display: flex; align-items: center; gap: 12px; justify-content: center; width: 100%; height: 100%;">
-            <img src="assets/logos/SVG/Isotipo.svg" alt="Isotipo Incunabula" style="width: 48px; height: 48px; flex-shrink: 0;">
-            <span style="font-family: var(--font-heading); font-size: 32px; font-weight: var(--font-weight-heading); letter-spacing: 0.04em; color: var(--color-primary); line-height: 1; padding-top: 4px;">INCUNABULA</span>
-          </div>
-        </div>
-        <div class="logo-variant dark">
-          <span class="logo-variant-label">Imagotipo Dinámico (Negativo)</span>
-          <div style="display: flex; align-items: center; gap: 12px; justify-content: center; width: 100%; height: 100%;">
-            <img src="assets/logos/SVG/Isotipo.svg" alt="Isotipo Incunabula" style="width: 48px; height: 48px; filter: invert(1); flex-shrink: 0;">
-            <span style="font-family: var(--font-heading); font-size: 32px; font-weight: var(--font-weight-heading); letter-spacing: 0.04em; color: var(--color-bg); line-height: 1; padding-top: 4px;">INCUNABULA</span>
-          </div>
-        </div>
-        <div class="logo-variant">
-          <span class="logo-variant-label">Isotipo Aislado</span>
-          <img src="assets/logos/SVG/Isotipo.svg" alt="Isotipo Incunabula" class="svg-logo" style="width: 64px;">
-        </div>
-        <div class="logo-variant dark">
-          <span class="logo-variant-label">Wordmark Dinámico</span>
-          <div style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
-            <span style="font-family: var(--font-heading); font-size: 36px; font-weight: var(--font-weight-heading); letter-spacing: 0.04em; color: var(--color-bg); line-height: 1;">INCUNABULA</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Logotipo Oficial (Colophon) -->
-      <div style="margin-top: var(--space-2xl);">
-        <h3 style="font-family: var(--font-heading); font-size: 24px; margin-bottom: var(--space-sm);">Logotipo Oficial (Colophon)</h3>
-        <p class="section-desc">Un guiño a las marcas de impresores del siglo XV. El sello definitivo de calidad que certifica nuestros libros.</p>
-        <div id="html-colophon" style="background: var(--color-bg-alt); padding: var(--space-2xl); border-radius: var(--radius-lg); border: 1px solid var(--color-border); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: var(--space-md); box-shadow: var(--shadow-card);">
-           <img src="assets/logos/SVG/Isotipo.svg" alt="Colophon SVG" style="width: 100px; mix-blend-mode: multiply;">
-           <div style="font-family: var(--font-heading); font-size: 36px; font-weight: var(--font-weight-heading); color: var(--color-primary); letter-spacing: 0.05em; margin-top: -12px;">INCUNABULA</div>
-           <div style="font-family: var(--font-body); font-size: 14px; color: var(--color-text-secondary); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600;">Librería</div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-
-  <!-- ================= COMPONENTES ================= -->
+  <!-- ================= 05 COMPONENTES ================= -->
   <div class="container">
     <section class="section" id="componentes">
-      <div class="section-label">05 — Biblioteca de Componentes</div>
-      <h2 class="section-title">Los Componentes</h2>
-      <p class="section-desc">Los ladrillos del sistema de diseño. Cada componente hereda los tokens de la versión
-        activa automáticamente.</p>
+      <div class="section-label">05 — Biblioteca de componentes</div>
+      <h2 class="section-title">Los componentes</h2>
+      <p class="section-desc">Los ladrillos del sistema. Todos leen los tokens de la sección 03 y usan los estados de la tienda: cargando, error, vacío y desbordado se resuelven con las mismas piezas.</p>
 
       <div class="components-grid">
 
-        <!-- Botones -->
         <div>
-          <p class="type-caption" style="margin-bottom: var(--space-sm);">Botones</p>
+          <p class="type-caption group-label">Botones</p>
           <div class="component-row">
-            <button class="btn btn-primary btn-lg">Añadir al carrito <span style="margin-left:8px;">→</span></button>
+            <button class="btn btn-primary btn-lg">Añadir al carrito <span aria-hidden="true">→</span></button>
             <button class="btn btn-primary">Comprar ahora</button>
             <button class="btn btn-primary btn-sm">Ver detalles</button>
           </div>
           <div class="component-row" style="margin-top: var(--space-sm);">
             <button class="btn btn-secondary btn-lg">Seguir explorando</button>
             <button class="btn btn-secondary">Añadir a mi lista</button>
-            <button class="btn btn-secondary btn-sm" disabled
-              style="opacity: 0.5; cursor: not-allowed;">Agotado</button>
+            <button class="btn btn-secondary btn-sm" disabled style="opacity: 0.5; cursor: not-allowed;">Agotado</button>
           </div>
           <div class="component-row" style="margin-top: var(--space-sm);">
-            <button class="btn btn-ghost" style="border-color: var(--color-border);"><svg width="16" height="16"
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="feather-icon">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
-              </svg> Continuar con Google</button>
-            <button class="btn btn-ghost"
-              style="color: var(--color-accent); border-color: var(--color-accent);">Eliminar del carrito</button>
-            <button class="btn"
-              style="background: transparent; color: var(--color-text-secondary); text-decoration: underline; padding: 12px; font-weight: 500;">Solo
-              texto tipo enlace</button>
+            <button class="btn btn-ghost">Continuar con Google</button>
+            <button class="btn btn-ghost" style="color: var(--color-accent); border-color: var(--color-accent);">Eliminar del carrito</button>
+            <button class="btn" style="background: transparent; color: var(--color-text-secondary); text-decoration: underline; font-weight: 500;">Solo texto tipo enlace</button>
           </div>
         </div>
 
-        <!-- Badges -->
         <div>
-          <p class="type-caption" style="margin-bottom: var(--space-sm);">Etiquetas de catálogo</p>
+          <p class="type-caption group-label">Etiquetas de catálogo</p>
           <div class="component-row">
-            <span class="badge badge-used"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" class="feather-icon">
-                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-              </svg> Usado Premium</span>
-            <span class="badge badge-stock">En stock (1)</span>
-            <span class="badge badge-new">Nuevo sellado</span>
-            <span class="badge badge-rare">★ Primera Edición</span>
+            <span class="badge badge-used">Usado, muy bueno</span>
+            <span class="badge badge-used">Usado, bueno</span>
+            <span class="badge badge-used">Usado, aceptable</span>
+            <span class="badge badge-new">Nuevo</span>
             <span class="badge badge-out">Agotado temporalmente</span>
           </div>
+          <p class="tokens-note" style="margin-top: var(--space-sm); max-width: 70ch;">
+            Criterio del cliente: no se muestra "En existencias"; solo aparece <em>Agotado temporalmente</em> cuando el libro no está disponible. La primera edición va entre paréntesis tras el título, por ejemplo: <em>Título del libro <span class="book-edition">(Primera edición)</span></em>.
+          </p>
         </div>
 
-        <!-- Tarjetas de producto -->
         <div>
-          <p class="type-caption" style="margin-bottom: var(--space-sm);">Tarjetas de producto (Inventario Real)</p>
+          <p class="type-caption group-label">Tarjetas de producto</p>
           <div class="book-cards">
 
-            <!-- Card 1 -->
-            <div class="book-card" style="display: flex; flex-direction: column; height: 100%;">
-              <div class="book-img"
-                style="background: var(--color-bg-alt); aspect-ratio: 1/1.2; overflow: hidden; position: relative;">
-                <span class="badge badge-rare book-badge"
-                  style="z-index: 2; background: var(--color-accent); color: white; border: none;">-20%</span>
-                <img src="assets/photos/100_historias.webp" alt="100 historias de oración"
-                  style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
+            <article class="book-card">
+              <div class="book-cover">
+                <span class="book-badge">−20 %</span>
+                <img src="assets/photos/100_historias.webp" alt="Portada de 100 historias de oración para niñas valientes" loading="lazy">
               </div>
-              <div class="book-info"
-                style="padding: 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
-                <div>
-                  <div class="book-title" style="font-size: 16px; margin-bottom: 6px;">100 historias de oración para
-                    niñas valientes</div>
-                  <div class="book-author"
-                    style="font-size: 13px; margin-bottom: 8px; color: var(--color-text-secondary);">Jean Fischer</div>
-                  <div style="font-size: 11px; color: var(--color-success); font-weight: 500; margin-bottom: 12px;">En
-                    stock</div>
-                </div>
-                <div class="book-footer"
-                  style="margin-top: auto; border-top: 1px solid var(--color-border); padding-top: 16px; flex-wrap: wrap; gap: 8px; align-items: flex-end;">
-                  <div style="display: flex; flex-direction: column; line-height: 1;">
-                    <span
-                      style="font-size: 11px; text-decoration: line-through; color: var(--color-text-secondary); margin-bottom: 4px;">$25.000</span>
-                    <span class="book-price" style="font-size: 18px;">$20.000</span>
-                  </div>
-                  <button class="book-btn" style="padding: 8px 16px; font-size: 13px;">Añadir</button>
+              <div class="book-info">
+                <span class="book-cat">Infantil y juvenil</span>
+                <h4 class="book-title">100 historias de oración para niñas valientes</h4>
+                <p class="book-author">Jean Fischer</p>
+                <div class="book-footer">
+                  <div class="book-prices"><span class="book-price-old">$25.000</span><span class="book-price">$20.000</span></div>
+                  <button class="book-btn" type="button">Añadir</button>
                 </div>
               </div>
-            </div>
+            </article>
 
-            <!-- Card 2 -->
-            <div class="book-card" style="display: flex; flex-direction: column; height: 100%;">
-              <div class="book-img"
-                style="background: var(--color-bg-alt); aspect-ratio: 1/1.2; overflow: hidden; position: relative;">
-                <span class="badge badge-rare book-badge"
-                  style="z-index: 2; background: var(--color-accent); color: white; border: none;">-30%</span>
-                <img src="assets/photos/1000_anos.webp" alt="1000 años de alegrías y penas"
-                  style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
+            <article class="book-card">
+              <div class="book-cover">
+                <span class="book-badge">−30 %</span>
+                <img src="assets/photos/1000_anos.webp" alt="Portada de 1000 años de alegrías y penas" loading="lazy">
               </div>
-              <div class="book-info"
-                style="padding: 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
-                <div>
-                  <div class="book-title" style="font-size: 16px; margin-bottom: 6px;">1000 años de alegrías y penas.
-                    Memorias</div>
-                  <div class="book-author"
-                    style="font-size: 13px; margin-bottom: 8px; color: var(--color-text-secondary);">Juanita León</div>
-                  <div style="font-size: 11px; color: #B25A00; font-weight: 500; margin-bottom: 12px;">Usado, muy bueno
-                  </div>
-                </div>
-                <div class="book-footer"
-                  style="margin-top: auto; border-top: 1px solid var(--color-border); padding-top: 16px; flex-wrap: wrap; gap: 8px; align-items: flex-end;">
-                  <div style="display: flex; flex-direction: column; line-height: 1;">
-                    <span
-                      style="font-size: 11px; text-decoration: line-through; color: var(--color-text-secondary); margin-bottom: 4px;">$35.700</span>
-                    <span class="book-price" style="font-size: 18px;">$25.000</span>
-                  </div>
-                  <button class="book-btn" style="padding: 8px 16px; font-size: 13px;">Añadir</button>
+              <div class="book-info">
+                <span class="book-cat">Historia</span>
+                <h4 class="book-title">1000 años de alegrías y penas. Memorias</h4>
+                <p class="book-author">Ai Weiwei</p>
+                <p class="book-cond">Usado, muy bueno</p>
+                <div class="book-footer">
+                  <div class="book-prices"><span class="book-price-old">$35.700</span><span class="book-price">$25.000</span></div>
+                  <button class="book-btn" type="button">Añadir</button>
                 </div>
               </div>
-            </div>
+            </article>
 
-            <!-- Card 3 -->
-            <div class="book-card" style="display: flex; flex-direction: column; height: 100%;">
-              <div class="book-img"
-                style="background: var(--color-bg-alt); aspect-ratio: 1/1.2; overflow: hidden; position: relative;">
-                <span class="badge badge-rare book-badge"
-                  style="z-index: 2; background: var(--color-accent); color: white; border: none;">-10%</span>
-                <img src="assets/photos/teatro.webp" alt="Teatro completo"
-                  style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
+            <article class="book-card">
+              <div class="book-cover">
+                <span class="book-badge">−10 %</span>
+                <img src="assets/photos/teatro.webp" alt="Portada de Teatro completo" loading="lazy">
               </div>
-              <div class="book-info"
-                style="padding: 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
-                <div>
-                  <div class="book-title" style="font-size: 16px; margin-bottom: 6px;">Teatro completo</div>
-                  <div class="book-author"
-                    style="font-size: 13px; margin-bottom: 8px; color: var(--color-text-secondary);">Luis Andrés Caicedo
-                  </div>
-                  <div style="font-size: 11px; color: #3730B3; font-weight: 500; margin-bottom: 12px;">Nuevo</div>
-                </div>
-                <div class="book-footer"
-                  style="margin-top: auto; border-top: 1px solid var(--color-border); padding-top: 16px; flex-wrap: wrap; gap: 8px; align-items: flex-end;">
-                  <div style="display: flex; flex-direction: column; line-height: 1;">
-                    <span
-                      style="font-size: 11px; text-decoration: line-through; color: var(--color-text-secondary); margin-bottom: 4px;">$43.300</span>
-                    <span class="book-price" style="font-size: 18px;">$39.000</span>
-                  </div>
-                  <button class="book-btn" style="padding: 8px 16px; font-size: 13px;">Añadir</button>
+              <div class="book-info">
+                <span class="book-cat">Literatura</span>
+                <h4 class="book-title">Teatro completo</h4>
+                <p class="book-author">Andrés Caicedo</p>
+                <p class="book-cond is-new">Nuevo</p>
+                <div class="book-footer">
+                  <div class="book-prices"><span class="book-price-old">$43.300</span><span class="book-price">$39.000</span></div>
+                  <button class="book-btn" type="button">Añadir</button>
                 </div>
               </div>
-            </div>
+            </article>
 
-            <!-- Card 4 -->
-            <div class="book-card" style="display: flex; flex-direction: column; height: 100%;">
-              <div class="book-img"
-                style="background: var(--color-bg-alt); aspect-ratio: 1/1.2; overflow: hidden; position: relative;">
-                <span class="badge badge-rare book-badge"
-                  style="z-index: 2; background: var(--color-accent); color: white; border: none;">-10%</span>
-                <img src="assets/photos/book_nook.webp" alt="Book Nook"
-                  style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
+            <!-- Tarjeta en estado agotado: oculta por ahora (se muestra quitando "hidden"). -->
+            <article class="book-card is-soldout" hidden>
+              <div class="book-cover">
+                <img src="assets/photos/book_nook.webp" alt="Book Nook Bookshop Memories" loading="lazy">
               </div>
-              <div class="book-info"
-                style="padding: 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
-                <div>
-                  <div class="book-title" style="font-size: 16px; margin-bottom: 6px;">Book Nook Bookshop Memories</div>
-                  <div class="book-author"
-                    style="font-size: 13px; margin-bottom: 8px; color: var(--color-text-secondary);">Sin autor</div>
-                  <div style="font-size: 11px; color: #3730B3; font-weight: 500; margin-bottom: 12px;">Nuevo</div>
-                </div>
-                <div class="book-footer"
-                  style="margin-top: auto; border-top: 1px solid var(--color-border); padding-top: 16px; flex-wrap: wrap; gap: 8px; align-items: flex-end;">
-                  <div style="display: flex; flex-direction: column; line-height: 1;">
-                    <span
-                      style="font-size: 11px; text-decoration: line-through; color: var(--color-text-secondary); margin-bottom: 4px;">$210.000</span>
-                    <span class="book-price" style="font-size: 18px;">$189.000</span>
-                  </div>
-                  <button class="book-btn" style="padding: 8px 16px; font-size: 13px;">Añadir</button>
+              <div class="book-info">
+                <span class="book-cat">Libros antiguos y coleccionables</span>
+                <h4 class="book-title">Book Nook Bookshop Memories</h4>
+                <p class="book-author">Sin autor</p>
+                <p class="book-cond"><span class="badge badge-out">Agotado temporalmente</span></p>
+                <div class="book-footer">
+                  <div class="book-prices"><span class="book-price">$189.000</span></div>
+                  <button class="book-btn" type="button" disabled>Avisarme</button>
                 </div>
               </div>
-            </div>
+            </article>
 
           </div>
+          <p class="tokens-note" style="margin-top: var(--space-sm);">Orden fijo de la tarjeta: portada → categoría → título → autor → estado → precio y acción. El estado agotado (portada en gris, botón "Avisarme") está definido y oculto por ahora.</p>
         </div>
 
-        <!-- Inputs -->
         <div>
-          <p class="type-caption" style="margin-bottom: var(--space-sm);">Formularios de Checkout y Búsqueda</p>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); align-items: start;">
-            <!-- Buscador y Filtros -->
-            <div
-              style="background: var(--color-surface); padding: 24px; border-radius: var(--radius-md); border: 1px solid var(--color-border); box-shadow: var(--shadow-card);">
-              <h4 style="font-family: var(--font-heading); margin-bottom: 16px;">Búsqueda Avanzada</h4>
-              <div class="input-group" style="position: relative; margin-bottom: 16px;">
-                <input class="input" type="text" placeholder="Buscar por título, autor, ISBN..."
-                  style="width: 100%; padding-left: 40px; height: 44px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-family: var(--font-body); outline: none;">
-                <svg style="position: absolute; left: 12px; top: 12px; color: var(--color-text-secondary);" width="20"
-                  height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
+          <p class="type-caption group-label">Formularios de compra y búsqueda</p>
+          <div class="concept-grid" style="margin-top: 0;">
+            <div class="form-card">
+              <h4>Búsqueda avanzada</h4>
+              <div class="search-wrap">
+                <input class="input" type="text" placeholder="Buscar por título, autor, ISBN…" style="width: 100%;" aria-label="Buscar">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
               </div>
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
-                <select class="input"
-                  style="width: 100%; height: 40px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-family: var(--font-body); color: var(--color-text-secondary); padding-left: 12px; outline: none;">
+              <div class="form-grid-2" style="margin-bottom: var(--space-sm);">
+                <select class="input" aria-label="Categoría">
                   <option>Todas las categorías</option>
-                  <option>Literatura y Novela</option>
-                  <option>Historia y Política</option>
+                  <option>Literatura</option>
+                  <option>Historia</option>
                 </select>
-                <select class="input"
-                  style="width: 100%; height: 40px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-family: var(--font-body); color: var(--color-text-secondary); padding-left: 12px; outline: none;">
-                  <option>Estado: Todos</option>
-                  <option>Como nuevo</option>
-                  <option>Con historia</option>
+                <select class="input" aria-label="Estado">
+                  <option>Estado: todos</option>
+                  <option>Nuevo</option>
+                  <option>Usado, muy bueno</option>
                 </select>
               </div>
-              <button class="btn btn-primary" style="width: 100%; justify-content: center;">Buscar tesoros</button>
+              <button class="btn btn-primary btn-block">Buscar tesoros</button>
             </div>
 
-            <!-- Checkout Form Mock -->
-            <div
-              style="background: var(--color-surface); padding: 24px; border-radius: var(--radius-md); border: 1px solid var(--color-border);">
-              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
-                <h4 style="font-family: var(--font-heading); margin: 0;">Datos de Envío</h4>
-                <img src="assets/logos/SVG/Isotipo.svg" alt="Incunabula Isotipo" style="width: 24px; height: 24px;">
+            <div class="form-card">
+              <h4>Datos de envío</h4>
+              <div class="form-grid-2">
+                <div><label class="form-label" for="f-nombre">Nombre</label><input class="input" id="f-nombre" type="text" placeholder="Ej. Gabriel"></div>
+                <div><label class="form-label" for="f-apellidos">Apellidos</label><input class="input" id="f-apellidos" type="text" placeholder="Ej. García"></div>
               </div>
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
-                <div>
-                  <label
-                    style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: var(--color-text-secondary);">Nombre</label>
-                  <input class="input" type="text" placeholder="Ej. Gabriel"
-                    style="width: 100%; height: 40px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 0 12px; font-family: var(--font-body); outline: none;">
-                </div>
-                <div>
-                  <label
-                    style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: var(--color-text-secondary);">Apellidos</label>
-                  <input class="input" type="text" placeholder="Ej. García"
-                    style="width: 100%; height: 40px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 0 12px; font-family: var(--font-body); outline: none;">
-                </div>
+              <div style="margin-bottom: var(--space-sm);">
+                <label class="form-label" for="f-dir">Dirección completa</label>
+                <input class="input" id="f-dir" type="text" placeholder="Calle, carrera, apto…">
               </div>
-              <div style="margin-bottom: 16px;">
-                <label
-                  style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: var(--color-text-secondary);">Dirección
-                  completa</label>
-                <input class="input" type="text" placeholder="Calle, Carrera, Apto..."
-                  style="width: 100%; height: 40px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 0 12px; font-family: var(--font-body); outline: none;">
-              </div>
-              <label
-                style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--color-text-secondary); margin-bottom: 20px; cursor: pointer;">
+              <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--color-text-secondary); margin-bottom: var(--space-md);">
                 <input type="checkbox" checked style="accent-color: var(--color-accent); width: 16px; height: 16px;">
                 Guardar esta dirección para mis próximas compras
               </label>
-              <button class="btn btn-primary" style="width: 100%; justify-content: center;">Continuar al pago</button>
+              <button class="btn btn-primary btn-block">Continuar al pago</button>
             </div>
           </div>
         </div>
@@ -1798,167 +3117,329 @@
   </div>
 
 
+  <!-- ================= 06 LANDING ================= -->
+  <div class="container">
+    <section class="section" id="landing">
+      <div class="section-label">06 — Landing de la tienda</div>
+      <h2 class="section-title">El orden de la información</h2>
+      <p class="section-desc">Una visita se recorre de arriba abajo en seis pasos: primero la promesa, luego la confianza, después el camino para explorar, los libros, la salida para quien quiere vender y el cierre. Cada bloque responde una pregunta del lector. Fondo blanco para respirar, pergamino para marcar el ritmo y tarjetas siempre blancas.</p>
+
+      <ol class="landing-order">
+        <li><b>Promesa</b>¿Qué es esto?</li>
+        <li><b>Confianza</b>¿Puedo comprar sin miedo?</li>
+        <li><b>Categorías</b>¿Dónde busco lo mío?</li>
+        <li><b>Destacados</b>¿Qué me recomiendan?</li>
+        <li><b>Vender</b>¿Y mis libros viejos?</li>
+        <li><b>Cierre</b>¿Cómo sigo en contacto?</li>
+      </ol>
+
+      <div class="landing-frame">
+        <div class="browser-bar"><i></i><i></i><i></i><span class="browser-url">incunabula.co</span></div>
+        <div class="announce">Solo libros originales · Envíos a todo el país</div>
+        <div class="store-nav">
+          <button class="menu-btn" type="button" aria-label="Abrir menú">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <img src="assets/logos/v2/logotipo-h.svg" alt="Incunabula Librería">
+          <div class="search">
+            <input class="input" type="text" placeholder="Buscar por título, autor, ISBN…" aria-label="Buscar">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </div>
+          <div class="store-links">
+            <span>Catálogo</span><span>Vender</span>
+            <span class="cart" aria-label="Carrito, 2 libros"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg><b>2</b></span>
+          </div>
+        </div>
+
+        <!-- 01 Promesa -->
+        <div class="landing-block is-parchment">
+          <span class="block-tag"><b>1</b> Promesa</span>
+          <div class="mini-hero">
+            <div>
+              <h3>Tu próxima lectura te está esperando.</h3>
+              <p>Un catálogo curado que crece cada vez que un lector le da nueva vida a un libro.</p>
+              <a class="btn btn-primary" href="#landing">Explorar catálogo →</a>
+            </div>
+            <div class="mini-hero-art" aria-hidden="true">
+              <img src="assets/photos/100_historias.webp" alt="">
+              <img src="assets/photos/1000_anos.webp" alt="">
+              <img src="assets/photos/teatro.webp" alt="">
+            </div>
+          </div>
+        </div>
+
+        <!-- 02 Confianza -->
+        <div class="landing-block trust-bar">
+          <div class="trust-item">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+            <div><b>Solo libros originales</b>Cada título es auténtico.</div>
+          </div>
+          <div class="trust-item">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            <div><b>Pagos seguros</b>Wompi y Addi.</div>
+          </div>
+          <div class="trust-item">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+            <div><b>Envíos a todo el país</b>Desde Cali, a tu puerta.</div>
+          </div>
+          <div class="trust-item">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+            <div><b>Libros con historia</b>Estado descrito sin adornos.</div>
+          </div>
+        </div>
+
+        <!-- 03 Categorías -->
+        <div class="landing-block is-parchment">
+          <span class="block-tag"><b>3</b> Categorías</span>
+          <div class="block-head">
+            <h3>Encuentra tu próxima lectura</h3>
+            <a class="block-link" href="#landing">Ver todas →</a>
+          </div>
+          <div class="category-grid">
+            <a class="category-chip" href="#landing"><small><span class="cat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span><span class="cat-arrow" aria-hidden="true">→</span></small>Literatura</a>
+            <a class="category-chip" href="#landing"><small><span class="cat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2V18h6v-1.3c0-.8.4-1.5 1-2A7 7 0 0 0 12 2z"/></svg></span><span class="cat-arrow" aria-hidden="true">→</span></small>Filosofía y psicología</a>
+            <a class="category-chip" href="#landing"><small><span class="cat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 21 7 3 7"/><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="10" x2="6" y2="19"/><line x1="10" y1="10" x2="10" y2="19"/><line x1="14" y1="10" x2="14" y2="19"/><line x1="18" y1="10" x2="18" y2="19"/></svg></span><span class="cat-arrow" aria-hidden="true">→</span></small>Arte y arquitectura</a>
+            <a class="category-chip" href="#landing"><small><span class="cat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/><path d="M18 3v4"/><path d="M16 5h4"/></svg></span><span class="cat-arrow" aria-hidden="true">→</span></small>Esoterismo y paranormal</a>
+            <a class="category-chip" href="#landing"><small><span class="cat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2c1 4 5 6 5 11a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-4-1-6 1-10z"/></svg></span><span class="cat-arrow" aria-hidden="true">→</span></small>Religión y espiritualidad</a>
+            <a class="category-chip" href="#landing"><small><span class="cat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></span><span class="cat-arrow" aria-hidden="true">→</span></small>Desarrollo y crecimiento personal</a>
+            <a class="category-chip" href="#landing"><small><span class="cat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h12a2 2 0 0 0 2-2v-2H10v2a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v3h4"/><path d="M19 17V5a2 2 0 0 0-2-2H4"/></svg></span><span class="cat-arrow" aria-hidden="true">→</span></small>Libros antiguos y coleccionables</a>
+            <a class="category-chip" href="#landing"><small><span class="cat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.2a2 2 0 0 0-.6-1.4L12 12l-4.4 4.4a2 2 0 0 0-.6 1.4V22"/><path d="M7 2v4.2a2 2 0 0 0 .6 1.4L12 12l4.4-4.4a2 2 0 0 0 .6-1.4V2"/></svg></span><span class="cat-arrow" aria-hidden="true">→</span></small>Historia</a>
+            <a class="category-chip" href="#landing"><small><span class="cat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></span><span class="cat-arrow" aria-hidden="true">→</span></small>Infantil y juvenil</a>
+            <a class="category-chip" href="#landing"><small><span class="cat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span><span class="cat-arrow" aria-hidden="true">→</span></small>Negocios y liderazgo</a>
+          </div>
+        </div>
+
+        <!-- 04 Destacados -->
+        <div class="landing-block">
+          <span class="block-tag"><b>4</b> Destacados</span>
+          <div class="block-head">
+            <h3>Joyas listas para envío</h3>
+            <a class="block-link" href="#landing">Ver el catálogo →</a>
+          </div>
+          <div class="book-cards">
+            <article class="book-card">
+              <div class="book-cover"><span class="book-badge">−30 %</span><img src="assets/photos/1000_anos.webp" alt="Portada de 1000 años de alegrías y penas" loading="lazy"></div>
+              <div class="book-info">
+                <span class="book-cat">Historia</span>
+                <h4 class="book-title">1000 años de alegrías y penas</h4>
+                <p class="book-author">Ai Weiwei</p>
+                <p class="book-cond">Usado, muy bueno</p>
+                <div class="book-footer"><div class="book-prices"><span class="book-price-old">$35.700</span><span class="book-price">$25.000</span></div><button class="book-btn" type="button">Añadir</button></div>
+              </div>
+            </article>
+            <article class="book-card">
+              <div class="book-cover"><span class="book-badge">−10 %</span><img src="assets/photos/teatro.webp" alt="Portada de Teatro completo" loading="lazy"></div>
+              <div class="book-info">
+                <span class="book-cat">Literatura</span>
+                <h4 class="book-title">Teatro completo</h4>
+                <p class="book-author">Andrés Caicedo</p>
+                <p class="book-cond is-new">Nuevo</p>
+                <div class="book-footer"><div class="book-prices"><span class="book-price-old">$43.300</span><span class="book-price">$39.000</span></div><button class="book-btn" type="button">Añadir</button></div>
+              </div>
+            </article>
+            <article class="book-card">
+              <div class="book-cover"><span class="book-badge">−20 %</span><img src="assets/photos/100_historias.webp" alt="Portada de 100 historias de oración para niñas valientes" loading="lazy"></div>
+              <div class="book-info">
+                <span class="book-cat">Infantil y juvenil</span>
+                <h4 class="book-title">100 historias de oración para niñas valientes</h4>
+                <p class="book-author">Jean Fischer</p>
+                <div class="book-footer"><div class="book-prices"><span class="book-price-old">$25.000</span><span class="book-price">$20.000</span></div><button class="book-btn" type="button">Añadir</button></div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- 05 Vender -->
+        <div class="landing-block is-dark">
+          <span class="block-tag"><b>5</b> Vender</span>
+          <div class="sell-banner">
+            <img src="assets/logos/v2/sello-negativo.svg" alt="">
+            <div>
+              <h3>¿Tienes libros que ya leíste?</h3>
+              <p>Una biblioteca que termina es otra que recién comienza. Cuéntanos qué tienes y le damos una nueva vida a tus libros.</p>
+            </div>
+            <a class="btn btn-secondary btn-lg" href="#landing">Vender mis libros</a>
+          </div>
+        </div>
+
+        <!-- 06 Cierre -->
+        <div class="landing-block is-parchment">
+          <span class="block-tag"><b>6</b> Cierre</span>
+          <div class="closing">
+            <div>
+              <h3>Las novedades, en tu correo</h3>
+              <p>Libros nuevos en el catálogo y hallazgos de la semana. Sin correo basura.</p>
+              <form class="newsletter" onsubmit="return false;">
+                <input class="input" type="email" placeholder="tu@correo.com" aria-label="Correo electrónico">
+                <button class="btn btn-primary" type="submit">Suscribirme</button>
+              </form>
+            </div>
+            <div class="closing-brand">
+              <img src="assets/logos/v2/logotipo-h.svg" alt="Incunabula Librería">
+              <span>Cali, Colombia · © Incunabula Libros</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 
 
-
-  <!-- ================= CORREOS ================= -->
+  <!-- ================= 07 CORREOS ================= -->
   <div class="container">
     <section class="section" id="correos">
-      <div class="section-label">06 — Correos Transaccionales</div>
-      <h2 class="section-title">Voz en los Correos</h2>
-      <p class="section-desc">Preview del correo de recuperación de carrito (Correo 3). El texto aplica el tono de
-        marca: cercano, sin urgencia manufacturada, con el cupón como gesto de confianza.</p>
+      <div class="section-label">07 — Correos transaccionales</div>
+      <h2 class="section-title">Voz en los correos</h2>
+      <p class="section-desc">Vista previa del correo de recuperación de carrito (Correo 3), tal como llegaría a la bandeja de entrada. Aplica el tono de marca: cercano, sin urgencia manufacturada, con el cupón como gesto de confianza. Sobre el lienzo pergamino, el correo es blanco y de 600 px de ancho.</p>
 
-      <div class="email-preview">
-        <div class="email-header">
-          <div style="display: flex; align-items: center; justify-content: center; gap: 12px; margin: 0 auto;">
-            <img src="assets/logos/SVG/Isotipo.svg" alt="Incunabula Isotipo" style="width: 32px; height: 32px;">
-            <span style="font-family: var(--font-heading); font-size: 24px; font-weight: var(--font-weight-heading); letter-spacing: 0.04em; color: var(--color-primary); line-height: 1; padding-top: 4px;">INCUNABULA</span>
+      <div class="email-layout">
+        <div class="email-canvas">
+
+          <div class="inbox-head">
+            <span class="from">De: Incunabula Librería</span>
+            <b>Dejaste algunos libros esperándote</b>
+            <span class="pre">Siguen guardados para ti, y te dejamos un 10 % de regalo.</span>
           </div>
-        </div>
-        <div class="email-body">
-          <p style="font-size: 12px; color: var(--color-text-secondary); margin-bottom: var(--space-sm);">Hola
-            <strong>María</strong>,
-          </p>
-          <h2>Dejaste algunos libros esperándote.</h2>
-          <p>
-            Hace unos días encontraste títulos que valían la pena. Todavía están ahí, guardados para ti, listos para
-            empezar su segunda historia en tu biblioteca.
-          </p>
 
-          <!-- Cart Summary (Dynamic WooCommerce Mock) -->
-          <div
-            style="background: var(--color-bg-alt); border-radius: var(--radius-md); padding: 16px; margin: 24px 0; display: flex; gap: 16px; align-items: center; border: 1px solid var(--color-border);">
-            <img src="assets/photos/1000_anos.webp"
-              alt="Libro en el carrito"
-              style="width: 60px; height: 80px; object-fit: cover; border-radius: 4px; box-shadow: var(--shadow-card);">
-            <div style="flex-grow: 1;">
-              <div
-                style="font-family: var(--font-heading); font-size: 16px; font-weight: 700; margin-bottom: 4px; color: var(--color-primary);">
-                1000 años de alegrías y penas. Memorias</div>
-              <div style="font-size: 13px; color: var(--color-text-secondary); margin-bottom: 4px;">Juanita León</div>
-              <div style="font-weight: 600; color: var(--color-accent); font-size: 14px;">$25.000 COP</div>
+          <div class="email">
+            <div class="em-top">
+              <img src="assets/logos/v2/logotipo-h.svg" alt="Incunabula Librería">
+            </div>
+            <div class="em-rule"></div>
+
+            <div class="em-hero">
+              <img class="seal" src="assets/logos/v2/sello-positivo.svg" alt="">
+              <div class="em-eyebrow">Tu carrito</div>
+              <h2>Dejaste algunos libros esperándote.</h2>
+              <p>Hace unos días encontraste títulos que valían la pena. Todavía están ahí, guardados para ti, listos para empezar su segunda historia en tu biblioteca.</p>
+            </div>
+
+            <div class="em-section">
+              <p class="em-hi">Hola <strong>María</strong>, esto es lo que dejaste:</p>
+              <div class="em-label">Lo que guardaste</div>
+              <div class="em-item">
+                <div class="cover"><img src="assets/photos/1000_anos.webp" alt="Portada de 1000 años de alegrías y penas"></div>
+                <div>
+                  <h3>1000 años de alegrías y penas. Memorias</h3>
+                  <div class="meta">Ai Weiwei</div>
+                  <span class="cond">Usado, muy bueno</span>
+                </div>
+                <div class="price">$25.000</div>
+              </div>
+              <div class="em-total"><span>Subtotal</span><b>$25.000 COP</b></div>
+            </div>
+
+            <div class="em-coupon">
+              <div class="stub"><strong>10 %</strong><span>de regalo</span></div>
+              <div class="body">
+                <p>Para animarte a dar el paso final, un cupón solo para ti:</p>
+                <div class="code">LIBROS10</div>
+                <p>Válido por 24 horas · Se aplica al pagar</p>
+              </div>
+            </div>
+
+            <a href="#correos" class="email-cta">Recuperar mi carrito →</a>
+
+            <div class="em-trust">
+              <div>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+                <b>Solo originales</b>Cada título es auténtico.
+              </div>
+              <div>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                <b>Pago seguro</b>Wompi y Addi.
+              </div>
+              <div>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                <b>Envíos a todo el país</b>Desde Cali.
+              </div>
+            </div>
+
+            <div class="em-recs">
+              <div class="em-label">También te puede gustar</div>
+              <div class="em-recs-grid">
+                <div class="em-rec">
+                  <div class="cover"><img src="assets/photos/teatro.webp" alt="Portada de Teatro completo"></div>
+                  <div class="t"><b>Teatro completo</b>Andrés Caicedo · $39.000</div>
+                </div>
+                <div class="em-rec">
+                  <div class="cover"><img src="assets/photos/100_historias.webp" alt="Portada de 100 historias de oración para niñas valientes"></div>
+                  <div class="t"><b>100 historias de oración para niñas valientes</b>Jean Fischer · $20.000</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="em-footer">
+              <img src="assets/logos/v2/sello-negativo.svg" alt="">
+              <div>Si tuviste algún problema técnico, responde a este correo.</div>
+              <div>Cali, Colombia · <a href="#correos">Cancelar suscripción</a></div>
             </div>
           </div>
+        </div>
 
-          <p>
-            Para animarte a dar el paso final, preparamos un cupón exclusivo del <strong
-              style="color: var(--color-accent);">10% de descuento</strong> solo para ti:
-          </p>
-          <div
-            style="background: var(--color-bg-alt); border: 2px dashed var(--color-accent); border-radius: var(--radius-lg); padding: 24px; text-align: center; margin-bottom: var(--space-md); position: relative; overflow: hidden;">
-            <div
-              style="position: absolute; top: -15px; left: -15px; background: var(--color-accent); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px; font-weight: bold; font-size: 14px; transform: rotate(-15deg);">
-              10%</div>
-            <div
-              style="font-family: var(--font-heading); font-size: 32px; font-weight: 700; letter-spacing: 0.15em; color: var(--color-primary); margin-bottom: 8px;">
-              LIBROS10</div>
-            <div style="font-size: 13px; color: var(--color-text-secondary); font-weight: 500;">Válido por 24 horas ·
-              Aplica en el Checkout</div>
-            <button class="btn btn-primary" style="margin-top: 16px; width: 100%; justify-content: center;">Aplicar
-              descuento al carrito</button>
-          </div>
-          <a href="#" class="email-cta">Recuperar mi carrito →</a>
-        </div>
-        <div class="email-footer">
-          Si tuviste algún problema técnico, responde a este correo. <br>
-          <a href="#" style="color: var(--color-text-secondary);">Cancelar suscripción</a>
-        </div>
+        <ol class="email-notes">
+          <li><b>Asunto y vista previa</b>El asunto repite la frase de marca; la vista previa promete el cupón.</li>
+          <li><b>Encabezado</b>Logotipo H sobre doble filete: reconocible incluso con imágenes bloqueadas.</li>
+          <li><b>Mensaje</b>Titular en Fraunces sobre pergamino. Sin urgencia ni signos de admiración.</li>
+          <li><b>Carrito</b>Portada, título, autor, estado y precio, en el mismo orden que la tarjeta de producto.</li>
+          <li><b>Cupón</b>Boleta con el 10 % en el talón y el código a la vista.</li>
+          <li><b>Llamado a la acción</b>Un solo botón carmesí, de ancho completo.</li>
+          <li><b>Confianza y sugerencias</b>Originales, pago seguro y envíos, más dos libros afines.</li>
+          <li><b>Pie</b>Tinta con sello negativo, ayuda y cancelación de suscripción.</li>
+        </ol>
       </div>
+      <p class="tokens-note" style="margin-top: var(--space-md);">Al montarlo en YayMail, usar Georgia como tipografía de respaldo: Gmail y Outlook no cargan Fraunces. Las portadas conservan su fondo blanco original, por eso van sobre bloques blancos.</p>
     </section>
   </div>
 
 
-  <!-- ================= TOZ DE VOZ ================= -->
+  <!-- ================= 08 VOZ ================= -->
   <div class="container">
     <section class="section" id="voz">
-      <div class="section-label">07 — Tono de Voz</div>
-      <h2 class="section-title">El Lenguaje</h2>
-      <p class="section-desc">Cómo suena Incunabula en cada punto de contacto. El lenguaje es parte del sistema de
-        diseño — define la personalidad de la marca tanto como el color.</p>
+      <div class="section-label">08 — Tono de voz</div>
+      <h2 class="section-title">El lenguaje</h2>
+      <p class="section-desc">Cómo suena Incunabula en cada punto de contacto. El lenguaje es parte del sistema de diseño: define la personalidad de la marca tanto como el color. El tono acordado con el cliente es el <strong>nivel 3</strong>.</p>
 
-      <div style="margin-bottom: var(--space-xl); background: var(--color-bg-alt); padding: var(--space-xl); border-radius: var(--radius-lg); text-align: center; box-shadow: var(--shadow-card); border: 1px solid var(--color-border); display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 200px;">
-        <img src="assets/logos/SVG/Isotipo.svg" alt="Arquetipo del vendedor (Colporteur)" style="width: 120px; mix-blend-mode: multiply; opacity: 0.8; margin-bottom: var(--space-md);">
-        <div style="font-family: var(--font-heading); font-size: 20px; color: var(--color-primary);">El Colporteur</div>
-        <div style="font-size: 14px; color: var(--color-text-secondary); max-width: 400px; margin-top: 8px;">El arquetipo de Incunabula: El conocimiento que ya existió, accesible para todos de nuevo. Culto, Accesible y Vivo.</div>
-      </div>
-
-      <!-- Espectros Interactivos -->
-      <div style="margin-bottom: var(--space-xl); display: grid; gap: 24px; max-width: 600px;">
-        <div>
-          <div
-            style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; font-weight: 600; color: var(--color-primary);">
-            <span>Formal / Institucional</span>
-            <span>Cercano / Apasionado</span>
-          </div>
-          <input type="range" min="1" max="5" value="4" class="voice-slider" id="voice-slider"
-            style="width: 100%; accent-color: var(--color-accent); cursor: pointer;">
-          <div
-            style="display: flex; justify-content: space-between; margin-top: 8px; font-size: 11px; color: var(--color-text-secondary); font-weight: 600;">
-            <span>Nivel 1</span><span>Nivel 2</span><span>Nivel 3</span><span>Nivel 4</span><span>Nivel 5</span>
-          </div>
+      <div class="logo-tile" style="margin-bottom: var(--space-xl); grid-column: auto;">
+        <div class="logo-stage is-parchment" style="flex-direction: column; text-align: center; gap: var(--space-sm);">
+          <img src="assets/logos/v2/isotipo.svg" alt="El Colporteur, arquetipo de la marca" style="width: 110px;">
+          <div style="font-family: var(--font-heading); font-size: 20px;">El Colporteur</div>
+          <div style="font-size: 14px; color: var(--color-text-secondary); max-width: 44ch;">El arquetipo de Incunabula: el conocimiento que ya existió, accesible para todos de nuevo. Culto, accesible y vivo.</div>
         </div>
       </div>
 
-      <div
-        style="background: var(--color-surface); border: 1px solid var(--color-border); padding: 32px; border-radius: var(--radius-lg); position: relative; box-shadow: var(--shadow-card);">
-        <span class="badge badge-new"
-          style="position: absolute; top: -10px; left: 24px; background: var(--color-primary); border-color: var(--color-primary); color: var(--color-bg);">Prueba
-          interactiva</span>
-        <h4 style="font-family: var(--font-heading); margin-bottom: 16px; font-size: 20px;">Email: Respuesta a queja por
-          demora logística</h4>
+      <div style="margin-bottom: var(--space-xl); max-width: 600px;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; font-weight: 600;">
+          <span>Formal / institucional</span>
+          <span>Cercano / apasionado</span>
+        </div>
+        <input type="range" min="1" max="5" value="3" id="voice-slider" aria-label="Nivel de tono" style="width: 100%; accent-color: var(--color-accent); cursor: pointer;">
+        <div style="display: flex; justify-content: space-between; margin-top: 8px; font-size: 11px; color: var(--color-text-secondary); font-weight: 600;">
+          <span>Nivel 1</span><span>Nivel 2</span><span>Nivel 3 · elegido</span><span>Nivel 4</span><span>Nivel 5</span>
+        </div>
+      </div>
+
+      <div class="form-card" style="position: relative; padding: var(--space-lg);">
+        <span class="badge badge-new" style="position: absolute; top: -10px; left: 24px; background: var(--color-primary); border-color: var(--color-primary); color: var(--color-bg);">Prueba interactiva</span>
+        <h4 style="font-size: 20px; margin-bottom: var(--space-sm);">Email: respuesta a queja por demora logística</h4>
         <p id="voice-preview" style="font-size: 16px; line-height: 1.7; color: var(--color-text-secondary);">
-          Hola María. Entendemos que estás esperando tu libro. Ha habido un leve retraso en la transportadora, pero ya
-          estamos encima del caso para que te llegue muy pronto a casa. ¡Gracias por tu paciencia!
+          Hola María. Tu libro viene en camino, pero la transportadora ha tenido un pequeño retraso. Estamos pendientes de tu paquete para asegurarnos de que llegue bien. Gracias por esperar.
         </p>
       </div>
 
-      <!-- Tabla de vocabulario -->
       <table class="voice-table">
         <thead>
-          <tr>
-            <th>Contexto</th>
-            <th>❌ No decimos</th>
-            <th>✅ Sí decimos</th>
-          </tr>
+          <tr><th>Contexto</th><th>No decimos</th><th>Sí decimos</th></tr>
         </thead>
         <tbody>
-          <tr>
-            <td><strong>Estado del libro</strong></td>
-            <td><span class="voice-no">Buenas condiciones</span></td>
-            <td><span class="voice-yes">Bien conservado — guardó bien sus páginas</span></td>
-          </tr>
-          <tr>
-            <td><strong>Precio</strong></td>
-            <td><span class="voice-no">Barato / Económico / Rebajado</span></td>
-            <td><span class="voice-yes">Precio justo / Accesible / Hallazgo</span></td>
-          </tr>
-          <tr>
-            <td><strong>Urgencia</strong></td>
-            <td><span class="voice-no">¡Corre que se acaba!</span></td>
-            <td><span class="voice-yes">Todavía está disponible para ti</span></td>
-          </tr>
-          <tr>
-            <td><strong>Carrito abandonado</strong></td>
-            <td><span class="voice-no">Olvidaste tu carrito</span></td>
-            <td><span class="voice-yes">Dejaste algunos libros esperándote</span></td>
-          </tr>
-          <tr>
-            <td><strong>Libro usado</strong></td>
-            <td><span class="voice-no">Usado / De segunda</span></td>
-            <td><span class="voice-yes">Ya vivió su primera historia</span></td>
-          </tr>
-          <tr>
-            <td><strong>Libro con marcas</strong></td>
-            <td><span class="voice-no">Con marcas / Deteriorado</span></td>
-            <td><span class="voice-yes">Con historia — tiene notas del lector anterior</span></td>
-          </tr>
-          <tr>
-            <td><strong>Post-compra</strong></td>
-            <td><span class="voice-no">¡Gracias por tu compra!</span></td>
-            <td><span class="voice-yes">Tu pedido está en camino. Pronto tendrás un libro con una nueva historia por
-                vivir.</span></td>
-          </tr>
+          <tr><td><strong>Estado del libro</strong></td><td><span class="voice-no">Buenas condiciones</span></td><td><span class="voice-yes">Bien conservado: guardó bien sus páginas</span></td></tr>
+          <tr><td><strong>Disponibilidad</strong></td><td><span class="voice-no">En stock</span></td><td><span class="voice-yes">Solo avisamos cuando está agotado temporalmente</span></td></tr>
+          <tr><td><strong>Precio</strong></td><td><span class="voice-no">Barato / económico / rebajado</span></td><td><span class="voice-yes">Precio justo / accesible / hallazgo</span></td></tr>
+          <tr><td><strong>Urgencia</strong></td><td><span class="voice-no">¡Corre que se acaba!</span></td><td><span class="voice-yes">Todavía está disponible para ti</span></td></tr>
+          <tr><td><strong>Carrito abandonado</strong></td><td><span class="voice-no">Olvidaste tu carrito</span></td><td><span class="voice-yes">Dejaste algunos libros esperándote</span></td></tr>
+          <tr><td><strong>Libro usado</strong></td><td><span class="voice-no">Usado premium / de segunda</span></td><td><span class="voice-yes">Usado, muy bueno · Ya vivió su primera historia</span></td></tr>
+          <tr><td><strong>Libro con marcas</strong></td><td><span class="voice-no">Con marcas / deteriorado</span></td><td><span class="voice-yes">Con historia: tiene notas del lector anterior</span></td></tr>
+          <tr><td><strong>Post-compra</strong></td><td><span class="voice-no">¡Gracias por tu compra!</span></td><td><span class="voice-yes">Tu pedido está en camino. Pronto tendrás un libro con una nueva historia por vivir.</span></td></tr>
         </tbody>
       </table>
     </section>
@@ -1966,55 +3447,24 @@
 
 
   <!-- ================= FOOTER ================= -->
-  <footer class="site-footer"
-    style="background: var(--color-primary); color: var(--color-bg); margin-top: var(--space-2xl); padding: var(--space-2xl) 0; border: none;">
-    <div class="container"
-      style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-xl); align-items: center;">
+  <footer class="site-footer" style="background: var(--color-primary); color: var(--color-bg); margin-top: var(--space-2xl); padding: var(--space-2xl) 0; border: none;">
+    <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-xl); align-items: center;">
       <div style="text-align: left;">
-        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
-          <img src="assets/logos/SVG/Isotipo.svg" alt="Incunabula Logo"
-            style="width: 48px; height: 48px; object-fit: contain; filter: invert(1);">
-          <div style="font-family: var(--font-heading); font-size: 32px; font-weight: 700;">INCUNABULA</div>
-        </div>
-        <p style="opacity: 0.7; font-size: 14px; max-width: 320px; margin-bottom: 24px; line-height: 1.7;">La librería
-          donde los buenos libros nunca mueren. Hacemos circular el conocimiento desde Colombia para todo el mundo.</p>
-        <div style="display: flex; gap: 16px;">
-          <a href="#" style="color: var(--color-bg); opacity: 0.5; transition: opacity 0.2s;"><svg width="20"
-              height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-            </svg></a>
-          <a href="#" style="color: var(--color-bg); opacity: 0.5; transition: opacity 0.2s;"><svg width="20"
-              height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round">
-              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-            </svg></a>
-        </div>
+        <img src="assets/logos/v2/logo-sello-negativo.svg" alt="Incunabula Librería" style="width: 150px; height: auto; display: block; margin-bottom: var(--space-md);">
+        <p style="opacity: 0.7; font-size: 14px; max-width: 320px; line-height: 1.7;">La librería donde los buenos libros nunca mueren. Hacemos circular el conocimiento desde Colombia para todo el mundo.</p>
       </div>
       <div style="text-align: right;">
-        <h4
-          style="font-size: 14px; margin-bottom: 16px; opacity: 0.5; text-transform: uppercase; letter-spacing: 0.1em; font-family: var(--font-body);">
-          Sistema de Diseño</h4>
-        <p style="font-size: 12px; opacity: 0.5; line-height: 1.8;">v0.1.0 — Actualizado Sep 2026<br>Diseñado para
-          Elementor Pro & WooCommerce<br>© Incunabula Libros</p>
+        <h4 style="font-size: 14px; margin-bottom: 16px; opacity: 0.5; text-transform: uppercase; letter-spacing: 0.1em; font-family: var(--font-body);">Sistema de diseño</h4>
+        <p style="font-size: 12px; opacity: 0.5; line-height: 1.8;">v3.0 · Actualizado octubre 2026<br>Diseñado para Elementor Pro y WooCommerce<br>© Incunabula Libros</p>
       </div>
     </div>
   </footer>
 
-  <!-- TOAST -->
-  <div class="copied-toast" id="toast">Color copiado al portapapeles ✓</div>
+  <div class="copied-toast" id="toast" role="status" aria-live="polite">Color copiado al portapapeles ✓</div>
 
 
-  <!-- =============================================
-       JAVASCRIPT
-  ============================================= -->
   <script>
-    // JS para interacción de Tono de Voz
-    const voiceSlider = document.getElementById('voice-slider');
-    const voicePreview = document.getElementById('voice-preview');
-
+    // Tono de voz: el nivel 3 es el acordado con el cliente.
     const voiceTexts = {
       "1": "Estimado/a cliente. Le informamos que su pedido ha presentado una demora logística fuera de nuestro control. Estamos realizando el seguimiento correspondiente con la transportadora. Agradecemos su comprensión.",
       "2": "Hola. Hemos notado un retraso en el envío de su pedido por parte de la empresa de transporte. Nuestro equipo está monitoreando la situación para asegurar la entrega lo antes posible.",
@@ -2023,108 +3473,27 @@
       "5": "¡Hola María! Sabemos las ganas que tienes de empezar a leer. Tu paquete está atrapado en un pequeño trancón de la transportadora, pero ya estamos moviendo cielo y tierra para que lo tengas en tus manos. ¡Mil gracias por esperarnos!"
     };
 
-    if (voiceSlider && voicePreview) {
-      voiceSlider.addEventListener('input', (e) => {
-        voicePreview.textContent = voiceTexts[e.target.value];
+    const voiceSlider = document.getElementById('voice-slider');
+    const voicePreview = document.getElementById('voice-preview');
+    voiceSlider.addEventListener('input', (e) => {
+      voicePreview.textContent = voiceTexts[e.target.value];
+    });
+
+    // Copiar el código de color de cualquier muestra con data-hex.
+    const toast = document.getElementById('toast');
+    document.querySelectorAll('[data-hex]').forEach((el) => {
+      el.addEventListener('click', () => {
+        const hex = el.dataset.hex;
+        const done = () => {
+          toast.textContent = `${hex} copiado al portapapeles ✓`;
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 2200);
+        };
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(hex).then(done).catch(() => {});
+        }
       });
-    }
-
-    const VERSIONS = {
-      a: {
-        name: "Versión A — Tinta y Pergamino",
-        colorDesc: "<strong>Versión A — Tinta y Pergamino.</strong> El pergamino como fondo replica la experiencia física del libro. La tinta casi-negra evoca la imprenta de tipos móviles. El carmesí es el color de las rúbricas en los primeros incunables.",
-        typeDesc: "<strong>Fraunces + Inter.</strong> Fraunces es una serif 'Old Style' suave y cálida que aporta cercanía y accesibilidad. Su eje óptico y pesos dinámicos la hacen ideal para web. Inter asegura legibilidad técnica impecable en interfaces digitales.",
-        headingFontName: "Fraunces — Headings",
-        composition: [
-          { name: "Pergamino", percent: 60, hex: "#F5F3EE", text: "#111111", use: "Fondo general del sitio" },
-          { name: "Blanco", percent: 25, hex: "#FFFFFF", text: "#111111", use: "Superficies y Cards" },
-          { name: "Tinta", percent: 10, hex: "#111111", text: "#F5F3EE", use: "Textos y Estructura" },
-          { name: "Carmesí", percent: 5, hex: "#B22222", text: "#FFFFFF", use: "Acentos y CTAs" }
-        ],
-        colors: [
-          { name: "Tinta", hex: "#111111", use: "Textos principales · Logo · Headers" },
-          { name: "Pergamino", hex: "#F5F3EE", use: "Fondo general del sitio" },
-          { name: "Alt. Fondo", hex: "#ECEAE4", use: "Fondo de secciones alternas" },
-          { name: "Carmesí", hex: "#B22222", use: "CTAs · Badges · Links activos" },
-          { name: "Carmesí Dark", hex: "#8B1A1A", use: "Hover de botón primario" },
-          { name: "Grafito", hex: "#3D3D3D", use: "Subtítulos · Texto secundario" },
-          { name: "Hueso", hex: "#D8D8D4", use: "Bordes · Separadores" },
-          { name: "Blanco", hex: "#FFFFFF", use: "Superficies · Cards" },
-          { name: "Musgo", hex: "#3A6B35", use: "En stock · Confirmado" },
-        ]
-      },
-      b: {
-        name: "Versión B — Vanguardia & Neón",
-        colorDesc: "<strong>Versión B — Brutalismo Moderno (Regla 65-25-10).</strong> Una regla estricta donde el 65% es dominante (Piedra Pómez), el 25% estructura y texto grueso (Negro Puro), y un 10% se reserva puramente para acentos llamativos (Naranja Sutil).",
-        typeDesc: "<strong>Bricolage Grotesque + Space Grotesk.</strong> Tipografías de vanguardia. Bricolage Grotesque aporta un carácter rudo y moderno, pero con proporciones más condensadas que Syne, solucionando el problema de legibilidad en palabras largas como INCUNABULA. Space Grotesk mantiene el tono tech-digital.",
-        headingFontName: "Bricolage Grotesque — Headings",
-        composition: [
-          { name: "Piedra Pómez", percent: 65, hex: "#F0ECE6", text: "#111111", use: "Fondo dominante" },
-          { name: "Negro Puro", percent: 25, hex: "#111111", text: "#F0ECE6", use: "Textos y Estructura" },
-          { name: "Naranja Sutil", percent: 10, hex: "#E35D29", text: "#FFFFFF", use: "Disruptivo (Acentos)" }
-        ],
-        colors: [
-          { name: "Negro Puro", hex: "#111111", use: "Contraste 20% · Textos · Headers" },
-          { name: "Piedra Pómez", hex: "#F0ECE6", use: "Dominante 70% · Fondo general" },
-          { name: "Cemento", hex: "#E3DFD9", use: "Fondo de secciones alternas" },
-          { name: "Naranja Sutil", hex: "#E35D29", use: "Disruptivo 10% · CTAs · Links" },
-          { name: "Naranja Oscuro", hex: "#D05220", use: "Hover de botón primario" },
-          { name: "Ámbar", hex: "#FF7A00", use: "Precios · Ornamentos" },
-          { name: "Gris Ceniza", hex: "#555555", use: "Subtítulos · Texto secundario" },
-          { name: "Aluminio", hex: "#CFCBC5", use: "Bordes · Separadores" },
-          { name: "Blanco", hex: "#FFFFFF", use: "Superficies · Cards" },
-        ]
-      }
-    };
-
-    function setVersion(v, btn) {
-      document.getElementById('root').setAttribute('data-version', v);
-      document.querySelectorAll('.version-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const data = VERSIONS[v];
-      document.getElementById('version-badge').textContent = data.name;
-      document.getElementById('color-desc').innerHTML = data.colorDesc;
-      document.getElementById('type-desc').innerHTML = data.typeDesc;
-      document.getElementById('heading-font-name').textContent = data.headingFontName;
-
-      renderColors(data);
-    }
-
-    function renderColors(data) {
-      const comp = document.getElementById('color-composition');
-      comp.innerHTML = data.composition.map(c => `
-        <div style="width: ${c.percent}%; background: ${c.hex}; color: ${c.text}; display: flex; flex-direction: column; justify-content: flex-end; padding: 20px; transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; border-right: 1px solid rgba(0,0,0,0.05); overflow: hidden;" title="${c.name}: ${c.percent}%" onclick="copyHex('${c.hex}', this)">
-          <div style="font-family: var(--font-heading); font-size: 32px; font-weight: 700; line-height: 1; margin-bottom: 4px;">${c.percent}%</div>
-          <div style="font-weight: 700; font-size: 14px; letter-spacing: -0.02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${c.name}</div>
-          <div style="font-size: 11px; opacity: 0.8; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${c.use}</div>
-        </div>
-      `).join('');
-
-      const grid = document.getElementById('color-grid');
-      grid.innerHTML = data.colors.map(c => `
-        <div class="color-swatch" onclick="copyHex('${c.hex}', this)" title="Clic para copiar">
-          <div class="swatch-preview" style="background:${c.hex};"></div>
-          <div class="swatch-info">
-            <div class="swatch-name">${c.name}</div>
-            <div class="swatch-hex">${c.hex}</div>
-            <div class="swatch-use">${c.use}</div>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function copyHex(hex, el) {
-      navigator.clipboard.writeText(hex).then(() => {
-        const toast = document.getElementById('toast');
-        toast.textContent = `${hex} copiado al portapapeles ✓`;
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 2200);
-      });
-    }
-
-    // Init
-    renderColors(VERSIONS.a);
+    });
   </script>
 </body>
-
 </html>
